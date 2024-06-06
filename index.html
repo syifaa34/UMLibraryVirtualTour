@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UM Library Virtual Tour</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+</head>
+<body>
+    <div id="header-placeholder"></div>
+    
+    
+    <div class="welcome-container">
+        <h1>Welcome to UM Library Virtual Tour!</h1>
+        <button class="btn" onclick="beginTour()">BEGIN TOUR</button>
+    </div>
+
+    <main>
+        <div id="tourPage" class="hidden">
+            <h2 class="tour-heading">Tour UM Library, from anywhere</h2>
+            <p class="tour-description">Explore every corner of the UM Library online. Experience our interactive virtual tour today!</p>
+            <div class="button-grid">
+                <button class="btn-grid" onclick="showLevels('level1')">MAIN ENTRANCE & LEVEL 1</button>
+                <button class="btn-grid" onclick="showLevels('level3')">LEVEL 3</button>
+                <button class="btn-grid" onclick="showLevels('level2')">LEVEL 2</button>
+                <button class="btn-grid" onclick="showLevels('level4')">LEVEL 4</button>
+            </div>
+        </div>
+    </main>
+
+    <div id="levelsPage" class="hidden">
+        <button class="btn" onclick="showTourPage()">BACK TO TOUR</button>
+        <div id="levelsContainer"></div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Include header
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-placeholder').innerHTML = data;
+            });
+    </script>
+</body>
+</html>
