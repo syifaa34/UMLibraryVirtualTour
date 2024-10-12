@@ -22,12 +22,12 @@ function showLevels(level) {
                 "scene1": {
                     "type": "cubemap",
                     "cubeMap": [
-                        'gambar/0.jpg',  // Front image
-                        'gambar/1.jpg',  // Back image
-                        'gambar/2.jpg',  // Left image
-                        'gambar/3.jpg',  // Right image
-                        'gambar/4.jpg',  // Up image
-                        'gambar/5.jpg'   // Down image
+                        'pic/0.jpg',  // Front image
+                        'pic/1.jpg',  // Back image
+                        'pic/2.jpg',  // Left image
+                        'pic/3.jpg',  // Right image
+                        'pic/4.jpg',  // Up image
+                        'pic/5.jpg'   // Down image
                     ],
                     "hotSpots": [
                         {
@@ -42,12 +42,12 @@ function showLevels(level) {
                 "scene2": {
                     "type": "cubemap",
                     "cubeMap": [
-                        'images/0.jpg',  // Front image
-                        'images/1.jpg',  // Back image
-                        'images/2.jpg',  // Left image
-                        'images/3.jpg',  // Right image
-                        'images/4.jpg',  // Up image
-                        'images/5.jpg'   // Down image
+                        'img/0.jpg',  // Front image
+                        'img/1.jpg',  // Back image
+                        'img/2.jpg',  // Left image
+                        'img/3.jpg',  // Right image
+                        'img/4.jpg',  // Up image
+                        'img/5.jpg'   // Down image
                     ],
                     "hotSpots": [
                         {
@@ -66,12 +66,12 @@ function showLevels(level) {
         pannellum.viewer('panorama2', {
             type: 'cubemap',
             cubeMap: [
-                'images/0.jpg',  // Front image
-                'images/1.jpg',  // Back image
-                'images/2.jpg',  // Left image
-                'images/3.jpg',  // Right image
-                'images/4.jpg',  // Up image
-                'images/5.jpg'   // Down image
+                'picture/0.jpg',  // Front image
+                'picture/1.jpg',  // Back image
+                'picture/2.jpg',  // Left image
+                'picture/3.jpg',  // Right image
+                'picture/4.jpg',  // Up image
+                'picture/5.jpg'   // Down image
             ],
             autoLoad: true
         });
@@ -121,3 +121,6 @@ fetch('header.html')
     .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
     });
+
+
+    

@@ -69,7 +69,7 @@ h1 {
 .btn {
     background-color: #0066cc;
     color: white;
-    padding: 15px 30px; /* Increased padding for bigger size */
+    padding: 12px 30px; /* Increased padding for bigger size */
     border: none;
     cursor: pointer;
     border-radius: 5px;
