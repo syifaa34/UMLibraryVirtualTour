@@ -147,3 +147,107 @@ main {
     margin-left: auto;
     margin-right: 0;
 }
+
+/* Modal for Image/Video Display */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    max-width: 80%;
+    max-height: 80%;
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.modal-content.hidden {
+    display: none;
+}
+
+#infoImage {
+    /* You can set the image to a specific size if needed */
+    width: 60%; /* Example: 50% of the container width */
+    height: auto; /* Keep the aspect ratio */
+    border-radius: 10px; /* Add rounded corners if needed */
+}
+
+#infoVideo {
+    /* You can set a specific size for the video too, if needed */
+    width: 80%;
+    height: auto;
+}
+
+/* Custom Arrow Styling */
+.custom-arrow {
+    width: 70px;  /* Adjust the size to match your image */
+    height: 70px;
+    background-image: url('arrow1.png');  /* Path to your arrow image */
+    background-size: contain;  /* Ensure the image fits the container */
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;  /* If you want to keep it round */
+    cursor: pointer;  
+      
+
+    
+}
+.custom-arrowInfo {
+    width: 30px;  /* Adjust the size to match your image */
+    height: 30px;
+    background-image: url('info.png');  /* Path to your arrow image */
+    background-size: contain;  /* Ensure the image fits the container */
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;  /* If you want to keep it round */
+    cursor: pointer;
+    position: absolute;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);  /* Add some shadow if needed */
+}
+
+.custom-arrow:hover {
+    transform: scale(1.1);  /* Scale the arrow slightly on hover */
+    transition: transform 0.3s ease;
+}
+
+
+/* Container for all layers of the hotspot */
+.floor-circle-hotspot {
+    position: relative;
+    width: 50px; /* Total size of the outermost circle */
+    height: 50px;
+    transform: perspective(200px) rotateX(45deg); /* Perspective tilt */
+}
+
+/* Inner white circle */
+.floor-circle-hotspot::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 15px; /* Size of the inner white circle */
+    height: 15px;
+    background-color: rgba(255, 255, 255, 1); /* Solid white color */
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2; /* Place it above the dark ring */
+}
+
+
+

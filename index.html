@@ -16,6 +16,8 @@
         <button class="btn" onclick="beginTour()">BEGIN TOUR</button>
     </div>
 
+   
+    
     <main>
         <div id="tourPage" class="hidden">
             <h2 class="tour-heading">Tour UM Library, from anywhere</h2>
@@ -28,34 +30,38 @@
             </div>
         </div>
 
-        <div id="levelsPage" class="hidden">
-            <button class="btn" onclick="showTourPage()">BACK</button>
-            <div id="levelsContainer"></div>
-        </div>
-
         <div id="level1Page" class="hidden">
-            <button class="btn" onclick="showTourPage()">BACK</button>
-            <div id="panorama1"></div>
+            <button class="btn back-btn" onclick="showTourPage()">BACK</button>
+            <div id="panorama1" class="panorama-container"></div>
         </div>
 
         <div id="level2Page" class="hidden">
-            <button class="btn" onclick="showTourPage()">BACK</button>
-            <div id="panorama2"></div>
+            <button class="btn back-btn" onclick="showTourPage()">BACK</button>
+            <div id="panorama2" class="panorama-container"></div>
         </div>
 
         <div id="level3Page" class="hidden">
-            <button class="btn" onclick="showTourPage()">BACK</button>
-            <div id="panorama3"></div>
+            <button class="btn back-btn" onclick="showTourPage()">BACK</button>
+            <div id="panorama3" class="panorama-container"></div>
         </div>
 
         <div id="level4Page" class="hidden">
-            <button class="btn" onclick="showTourPage()">BACK TO TOUR</button>
-            <div id="panorama4"></div>
+            <button class="btn back-btn" onclick="showTourPage()">BACK TO TOUR</button>
+            <div id="panorama4" class="panorama-container"></div>
         </div>
+
+        <!-- Modal for Image and Video -->
+        <div id="infoModal" class="modal hidden">
+            <span class="close-btn" onclick="closeInfoModal()">&times;</span>
+            <div id="modalContent">
+                <img id="infoImage" class="modal-content hidden" alt="info image">
+                <video id="infoVideo" class="modal-content hidden" controls></video>
+            </div>
+        </div>
+
+
     </main>
 
-    <script src="script.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
     <script>
         // Include header
         fetch('header.html')
@@ -64,5 +70,13 @@
                 document.getElementById('header-placeholder').innerHTML = data;
             });
     </script>
+
+    <!-- Pannellum Panorama Viewer -->
+    <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="script.js"></script>  <!-- Link to the external JavaScript file -->
+
+    
+
 </body>
 </html>
