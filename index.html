@@ -16,19 +16,26 @@
         <button class="btn" onclick="beginTour()">BEGIN TOUR</button>
     </div>
 
-   
-    
     <main>
+        
         <div id="tourPage" class="hidden">
             <h2 class="tour-heading">Tour UM Library, from anywhere</h2>
-            <p class="tour-description">Explore every corner of the UM Library online. Experience our interactive virtual tour today!</p>
-            <div class="button-grid">
-                <button class="btn-grid" onclick="showLevels('level1')">MAIN ENTRANCE & LEVEL 1</button>
-                <button class="btn-grid" onclick="showLevels('level2')">LEVEL 2</button>
-                <button class="btn-grid" onclick="showLevels('level3')">LEVEL 3</button>
-                <button class="btn-grid" onclick="showLevels('level4')">LEVEL 4</button>
-            </div>
+            <p class="tour-description">Experience our interactive virtual tour today!</p>
+
+            <button class="menu-toggle" onclick="toggleMenu()">
+                <i class="fas fa-chevron-right" id="arrow-icon"></i>
+            </button>
+
+            
+          <!-- Side Navigation -->
+        <div id="sideNavigation" class="side-navigation">
+            <img src="um_logo.png" alt="UM Logo" class="um-logo">
+            <button class="side-btn" onclick="showLevels('level1')">LEVEL 1</button>
+            <button class="side-btn" onclick="showLevels('level2')">LEVEL 2</button>
+            <button class="side-btn" onclick="showLevels('level3')">LEVEL 3</button>
+            <button class="side-btn" onclick="showLevels('level4')">LEVEL 4</button>
         </div>
+    </div>
 
         <div id="level1Page" class="hidden">
             <button class="btn back-btn" onclick="showTourPage()">BACK</button>

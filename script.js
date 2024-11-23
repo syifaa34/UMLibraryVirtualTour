@@ -228,54 +228,75 @@ function addNavigationHotspots(sceneId) {
                 type: "scene",
                 text: hotspot.text,
                 sceneId: hotspot.sceneId,
-                cssClass: hotspot.cssClass
+                cssClass: hotspot.cssClass,
             });
         });
     }
     return hotspots;
 }
 
+// Function to preload all panoramas for smoother navigation
+function preloadPanoramas(scenes) {
+    scenes.forEach(scene => {
+        const img = new Image();
+        img.src = scene.pano; // Preload the panorama image
+    });
+}
 // Function to initialize the viewer with multiple scenes and hotspots for each level
 function initializeEquirectangularViewer(containerId, scenes) {
     const sceneConfigurations = {};
 
+    // Configure scenes
     scenes.forEach(scene => {
-        const sceneId = scene.sceneId;
-        sceneConfigurations[sceneId] = {
-            "type": "equirectangular",
-            "panorama": scene.pano,
-            "autoLoad": true,
-            "pitch": scene.pitch || 0, // Use custom pitch for each scene
-            "yaw": scene.yaw || 0,     // Use custom yaw for each scene
-            "roll": scene.roll || 0,   // Use custom roll for each scene
-            "hfov": 110,
-            "hotSpots": addNavigationHotspots(sceneId)
+        sceneConfigurations[scene.sceneId] = {
+            type: 'equirectangular',
+            panorama: scene.pano,
+            autoLoad: true, // Automatically preload this panorama
+            hfov: 110, // Horizontal field of view
+            hotSpots: addNavigationHotspots(scene.sceneId),
+            yaw: scene.yaw || 0,
+            pitch: scene.pitch || 0,
+            roll: scene.roll || 0,
         };
     });
 
+    // Initialize Pannellum viewer
     const viewer = pannellum.viewer(containerId, {
-        "default": {
-            "firstScene": "scene1"
+        default: {
+            firstScene: scenes[0]?.sceneId || 'scene1', // Start with the first scene
+            autoLoad: true,
+            sceneFadeDuration: 800, // Smooth fade transition in milliseconds
+            loadingText: '' // Remove the "Loading..." text
         },
-        "scenes": sceneConfigurations
+        scenes: sceneConfigurations,
     });
 
-    // Function to reapply the roll after interactions
-    function reapplyRoll() {
-        const currentSceneId = viewer.getScene();
-        const currentScene = scenes.find(scene => scene.sceneId === currentSceneId);
-        if (currentScene && currentScene.roll !== undefined) {
-            viewer.setPitch(currentScene.pitch || 0);
-            viewer.setYaw(currentScene.yaw || 0);
-            viewer.setRoll(currentScene.roll); // Reapply roll
-        }
-    }
-
-    // Event listeners for user interactions
-    viewer.on('keydown', reapplyRoll);
-    viewer.on('mousedown', reapplyRoll);
-    viewer.on('touchstart', reapplyRoll);
+    viewer.on('scenechange', () => {
+        const loadingElements = document.querySelectorAll('.pnlm-loading, .pnlm-load-box, .pnlm-loading-bar, .pnlm-loading-text');
+        loadingElements.forEach(element => {
+            element.remove();
+        });
+    });
+    
+    
 }
+
+function preloadNextScene(sceneId) {
+    const nextScene = viewer.getConfig().scenes[sceneId];
+    if (nextScene) {
+        const img = new Image();
+        img.src = nextScene.panorama; // Preload the panorama
+    }
+}
+
+// Example: Preload a scene when hovering over a hotspot
+document.querySelectorAll('.pnlm-hotspot').forEach(hotspot => {
+    hotspot.addEventListener('mouseenter', () => {
+        const sceneId = hotspot.getAttribute('data-scene');
+        preloadNextScene(sceneId);
+    });
+});
+
 
 // Function to initialize the level with a container and scenes
 function showLevels(level) {
@@ -283,25 +304,37 @@ function showLevels(level) {
     initializeEquirectangularViewer(containerId, levels[level]);
 }
 
+
 // Function to begin the tour
 function beginTour() {
     document.querySelector('.welcome-container').classList.add('hidden');
     document.getElementById('tourPage').classList.remove('hidden');
 }
 
-// Function to display levels (tour pages)
-function showLevels(level) {
-    document.getElementById('tourPage').classList.add('hidden');
+// Function to show the appropriate level page
+function showTourPage() {
     document.getElementById('level1Page').classList.add('hidden');
     document.getElementById('level2Page').classList.add('hidden');
     document.getElementById('level3Page').classList.add('hidden');
     document.getElementById('level4Page').classList.add('hidden');
-
-    document.getElementById(level + 'Page').classList.remove('hidden');
-    initializeEquirectangularViewer('panorama' + level.slice(-1), levels[level]);
+    document.getElementById('tourPage').classList.remove('hidden');
 }
 
-// Function to display the modal with image or video
+// Function to toggle the side menu
+function toggleMenu() {
+    const sideNav = document.getElementById('sideNavigation');
+    const arrowIcon = document.getElementById('arrow-icon');
+
+    if (sideNav.classList.contains('active')) {
+        sideNav.classList.remove('active');
+        arrowIcon.classList.replace('fa-chevron-left', 'fa-chevron-right'); // Switch to right-facing arrow
+    } else {
+        sideNav.classList.add('active');
+        arrowIcon.classList.replace('fa-chevron-right', 'fa-chevron-left'); // Switch to left-facing arrow
+    }
+}
+
+// Function to show the modal for info hotspots
 function showInfoModal(hotSpotDiv, args) {
     const modal = document.getElementById('infoModal');
     const infoImage = document.getElementById('infoImage');
@@ -326,6 +359,10 @@ function closeInfoModal() {
     document.getElementById('infoModal').style.display = 'none';
 }
 
+// Preload all panoramas for the initial levels
+Object.values(levels).forEach(levelScenes => preloadPanoramas(levelScenes));
+
+
 // Adjust canvas size when window is resized
 window.addEventListener('resize', () => {
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -333,16 +370,41 @@ window.addEventListener('resize', () => {
     camera.updateProjectionMatrix();
 });
 
-// Function to show the tour page
-function showTourPage() {
+
+
+    // Function to reapply the roll after interactions
+    function reapplyRoll() {
+        const currentSceneId = viewer.getScene();
+        const currentScene = scenes.find(scene => scene.sceneId === currentSceneId);
+        if (currentScene && currentScene.roll !== undefined) {
+            viewer.setPitch(currentScene.pitch || 0);
+            viewer.setYaw(currentScene.yaw || 0);
+            viewer.setRoll(currentScene.roll); // Reapply roll
+        }
+    }
+
+    // Event listeners for user interactions
+    viewer.on('keydown', reapplyRoll);
+    viewer.on('mousedown', reapplyRoll);
+    viewer.on('touchstart', reapplyRoll);
+
+
+
+
+// Function to display levels (tour pages)
+function showLevels(level) {
+    document.getElementById('tourPage').classList.add('hidden');
     document.getElementById('level1Page').classList.add('hidden');
     document.getElementById('level2Page').classList.add('hidden');
     document.getElementById('level3Page').classList.add('hidden');
     document.getElementById('level4Page').classList.add('hidden');
-    document.getElementById('tourPage').classList.remove('hidden');
+
+    document.getElementById(level + 'Page').classList.remove('hidden');
+    initializeEquirectangularViewer('panorama' + level.slice(-1), levels[level]);
 }
 
-// Include header
+
+// Include header dynamically
 fetch('header.html')
     .then(response => response.text())
     .then(data => {

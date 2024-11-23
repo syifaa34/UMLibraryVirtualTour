@@ -47,23 +47,21 @@ body::before {
     padding: 20px;
 }
 
-.logo {
-    width: 170px; /* Adjust width as needed */
-    margin-left: 40px; /* Add margin to the left */
-}
-
 .welcome-container {
     text-align: center;
+    justify-content: flex-start;
     color: white;
-    padding: 50px;
+    padding: 120px;
     /* background-color: rgba(0, 0, 51, 0.8); */
     margin: 20px;
     border-radius: 10px;
+    /*background-color: rgba(0, 0, 0, 0.6); /* Optional background overlay */
+
 }
 
-h1 {
+.welcome-container h1 {
     margin: 20px 0;
-    font-size: 2em;
+    font-size:2.8em;  
 }
 
 .btn {
@@ -106,32 +104,126 @@ main {
 .hidden {
     display: none;
 }
-
-.btn-grid {
-    background-color: #e0e0e0;
-    color: #333;
-    padding: 20px;
+.menu-toggle {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    background-color: #003366;
+    color: white;
     border: none;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 1.2em;
-    width: 500px; /* Adjust width as needed */
-    height: 100px; /* Adjust height as needed */
-    margin: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    transition: transform 0.3s ease;
 }
 
+.menu-toggle:hover {
+    transform: scale(1.1);
+}
+.side-navigation { 
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px; /* Adjust the width */
+    height: 100%; /* Full height */
+    transform: translateX(-100%); /* Initially hidden off-screen */
+    transition: transform 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    padding: 20px;
+    z-index: 999;
+}
+
+/* Logo positioned at the top */
+.side-navigation .um-logo {
+    position: absolute;
+    top: 10%; /* Adjust the distance from the top */
+    left: 42%;
+    transform: translateX(-50%);
+    width: 250px;
+}
+
+/* Buttons with independent positioning */
+.side-navigation .side-btn {
+    position: absolute;
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+    background-color: #003366; /* Navy blue button color */
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2em;
+    width: 80%; /* Width relative to the container */
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* Specific button positions */
+.side-navigation .side-btn:nth-child(2) { /* LEVEL 1 Button */
+    top: 200px; /* Adjust distance from the top */
+}
+.side-navigation .side-btn:nth-child(3) { /* LEVEL 2 Button */
+    top: 270px; /* Adjust distance for the second button */
+}
+.side-navigation .side-btn:nth-child(4) { /* LEVEL 3 Button */
+    top: 340px; /* Adjust distance for the third button */
+}
+.side-navigation .side-btn:nth-child(5) { /* LEVEL 4 Button */
+    top: 410px; /* Adjust distance for the fourth button */
+}
+
+/* Button hover effects */
+.side-navigation .side-btn:hover {
+    background-color: #005bb5; /* Lighter blue on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+/* Toggle active state for the menu */
+.side-navigation.active {
+    transform: translateX(0); /* Slide into view */
+}
+
+
+.hidden {
+    display: none;
+}
+
+#arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+
 .tour-heading {
-    color: #ffffff; /* Change this color to your desired color */
-    font-size: 2em;
-    margin-bottom: 10px;
+    margin-top: 50px;
+    font-size: 2.5em;
+    color: white;
+    text-align: center;
+    margin: 0; /* Remove default margins */
+    position: absolute; /* Allow free positioning */
+    top: 40%; /* Adjust top position */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for perfect centering */
+
 }
 
 .tour-description {
-    color: #ffffff; /* Change this color to your desired color */
-    font-size: 1.2em;
-    margin-bottom: 20px;
+    font-size: 1.7em;
+    color: white;
+    text-align: center;
+    margin: 0;
+    position: absolute; /* Allow free positioning */
+    top: 50%; /* Adjust top position */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust for perfect centering */
 }
+
+
 
 #levelsContainer {
     text-align: center;
@@ -249,5 +341,20 @@ main {
     z-index: 2; /* Place it above the dark ring */
 }
 
+.pnlm-load-box {
+    display: none !important; /* Completely removes the loading screen */
+    visibility: hidden !important;
+}
+
+
+.pnlm-hotspot {
+    visibility: visible !important; /* Always visible */
+    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth animation */
+}
+
+.pnlm-hotspot:hover {
+    transform: scale(1.2);
+    opacity: 0.8;
+}
 
 
