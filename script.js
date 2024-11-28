@@ -4,7 +4,7 @@ const levels = {
         { sceneId: "scene1", pano: 'level1/1.0.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene2", pano: 'level1/1.1.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene3", pano: 'level1/1.2.jpg', pitch: 5, yaw: -10, roll: 3 },
-        { sceneId: "scene4", pano: 'level1/1.3.jpg', pitch: 0, yaw: 20, roll: -1 },
+        { sceneId: "scene4", pano: 'level1/1.3.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene5", pano: 'level1/1.4.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene6", pano: 'level1/1.5.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene7", pano: 'level1/2.0.jpg', pitch: 20, yaw: 2, roll: 3 },
@@ -38,7 +38,7 @@ const levels = {
 const navigationMap = {
     "scene1": {
         hotspots: [
-            { pitch: -30, yaw: 5, text: "To Scene 7", sceneId: "scene7", cssClass: "custom-arrow" },
+            { pitch: -20, yaw: 15,  text: "To Scene 7", sceneId: "scene7", cssClass: "custom-arrow" },
             { pitch: -30, yaw: 70, text: "To Scene 2", sceneId: "scene2", cssClass: "custom-arrow" },
             { pitch: -30, yaw: -70, text: "To Scene 6", sceneId: "scene6", cssClass: "custom-arrow" }
         ]
@@ -92,7 +92,7 @@ const navigationMap = {
         hotspots: [
             { pitch: 0, yaw: 30, text: "To scene 10", sceneId: "scene10", cssClass: "custom-arrow" },
             { pitch: -5, yaw: 60, text: "Go back", sceneId: "scene8", cssClass: "custom-arrow" },
-            { pitch: -10, yaw: 45, type: "info", text: "Info 1", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.jpg" }} 
+            { pitch: -10, yaw: 45, type: "info", text: "Info 1", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }} 
 
     
         ]
@@ -210,8 +210,6 @@ const navigationMap = {
 
 
     
-    
-
     // Continue for other scenes if needed
 };
 
@@ -225,23 +223,52 @@ function addNavigationHotspots(sceneId) {
             hotspots.push({
                 pitch: hotspot.pitch,
                 yaw: hotspot.yaw,
+                roll: 3, // Maintain roll consistency for hotspots
                 type: "scene",
                 text: hotspot.text,
                 sceneId: hotspot.sceneId,
                 cssClass: hotspot.cssClass,
+                clickHandlerFunc: hotspot.clickHandlerFunc, // Ensure this is passed
+                clickHandlerArgs: hotspot.clickHandlerArgs, // Ensure arguments are passed
+
             });
         });
     }
     return hotspots;
 }
 
-// Function to preload all panoramas for smoother navigation
-function preloadPanoramas(scenes) {
-    scenes.forEach(scene => {
-        const img = new Image();
-        img.src = scene.pano; // Preload the panorama image
-    });
+pannellum.viewer('panorama', {
+    hotSpotDebug: false,
+    // other configuration options
+});
+
+
+
+// Function to lock the roll
+function lockRoll() {
+    const yaw = viewer.getYaw(); // Preserve yaw
+    const pitch = viewer.getPitch(); // Preserve pitch
+    viewer.setYaw(yaw); // Reapply yaw
+    viewer.setPitch(pitch); // Reapply pitch
+    viewer.setRoll(3); // Lock roll to 3
 }
+
+function preloadNextScene(sceneId) {
+    const nextScene = levels['level1'].find(scene => scene.sceneId === sceneId); // Adjust 'level1' dynamically
+    if (nextScene) {
+        const img = new Image();
+        img.src = nextScene.pano; // Cache next panorama image
+    }
+}
+viewer.on('hotspotmouseover', (event) => {
+    if (event.sceneId) {
+        preloadNextScene(event.sceneId);
+    }
+});
+
+
+
+
 // Function to initialize the viewer with multiple scenes and hotspots for each level
 function initializeEquirectangularViewer(containerId, scenes) {
     const sceneConfigurations = {};
@@ -253,71 +280,100 @@ function initializeEquirectangularViewer(containerId, scenes) {
             panorama: scene.pano,
             autoLoad: true, // Automatically preload this panorama
             hfov: 110, // Horizontal field of view
-            hotSpots: addNavigationHotspots(scene.sceneId),
             yaw: scene.yaw || 0,
             pitch: scene.pitch || 0,
-            roll: scene.roll || 0,
+            roll: 3,
+            hotSpots: addNavigationHotspots(scene.sceneId),
+
         };
     });
 
     // Initialize Pannellum viewer
     const viewer = pannellum.viewer(containerId, {
         default: {
-            firstScene: scenes[0]?.sceneId || 'scene1', // Start with the first scene
+            firstScene:'scene1', // Start with the first scene
             autoLoad: true,
-            sceneFadeDuration: 800, // Smooth fade transition in milliseconds
+            sceneFadeDuration: 0, // Smooth fade transition in milliseconds
             loadingText: '' // Remove the "Loading..." text
+        
         },
         scenes: sceneConfigurations,
+        pitchLimits: [-30, 30], // Constrain vertical movement
+        rollLimits: [3, 3]  // Restrict rotational tilt
+
     });
 
-    viewer.on('scenechange', () => {
-        const loadingElements = document.querySelectorAll('.pnlm-loading, .pnlm-load-box, .pnlm-loading-bar, .pnlm-loading-text');
-        loadingElements.forEach(element => {
-            element.remove();
-        });
-    });
     
-    
-}
 
-function preloadNextScene(sceneId) {
-    const nextScene = viewer.getConfig().scenes[sceneId];
-    if (nextScene) {
-        const img = new Image();
-        img.src = nextScene.panorama; // Preload the panorama
-    }
-}
+// Mouse interactions
+viewer.on('mousedown', function() {
+    lockRoll; // Lock roll when the mouse is clicked
+});
 
-// Example: Preload a scene when hovering over a hotspot
-document.querySelectorAll('.pnlm-hotspot').forEach(hotspot => {
-    hotspot.addEventListener('mouseenter', () => {
-        const sceneId = hotspot.getAttribute('data-scene');
-        preloadNextScene(sceneId);
-    });
+viewer.on('mouseup', function() {
+    lockRoll; // Ensure roll is locked when mouse interaction ends
 });
 
 
-// Function to initialize the level with a container and scenes
+  viewer.on('keydown', function(event) {
+      const key = event.key;
+      if (key === 'ArrowLeft') {
+          viewer.setYaw(viewer.getYaw() - 10); // Move left
+      } else if (key === 'ArrowRight') {
+          viewer.setYaw(viewer.getYaw() + 10); // Move right
+      } else if (key === 'ArrowDown') {
+          viewer.setPitch(Math.min(viewer.getPitch() + 5, 30)); // Move down
+      } else if (key === 'ArrowUp') {
+          viewer.setPitch(Math.max(viewer.getPitch() - 5, -30)); // Move up
+      }
+    // Reapply roll lock
+    lockRoll();
+    event.preventDefault();
+});
+
+// Handle mouse scroll wheel interactions
+document.getElementById('containerId').addEventListener('wheel', function(event) {
+    lockRoll();
+    event.preventDefault(); // Prevent default zooming behavior
+
+});
+
+
+  // Enforce roll lock on scene changes
+  viewer.on('scenechange', function () {
+    lockRoll(); // Reapply roll on scene change
+});
+
+  // Periodically enforce roll lock
+  setInterval(function () {
+    lockRoll(); // Ensure roll-lock is consistently applied
+}, 50);
+
+
+ return viewer;
+
+// Ensure hotspots are active by default
+function activateHotspots(sceneId) {
+    const hotspots = navigationMap[sceneId]?.hotspots || [];
+    hotspots.forEach(hotspot => {
+        console.log(`Hotspot active: ${hotspot.text}`);
+        // Optionally, add custom logic for activating hotspots visually or programmatically
+    });
+}
+
+
+}
+// Function to show the appropriate level page
 function showLevels(level) {
     const containerId = 'panorama' + level.slice(-1);
-    initializeEquirectangularViewer(containerId, levels[level]);
-}
-
-
-// Function to begin the tour
-function beginTour() {
-    document.querySelector('.welcome-container').classList.add('hidden');
-    document.getElementById('tourPage').classList.remove('hidden');
-}
-
-// Function to show the appropriate level page
-function showTourPage() {
+    document.getElementById('tourPage').classList.add('hidden');
     document.getElementById('level1Page').classList.add('hidden');
     document.getElementById('level2Page').classList.add('hidden');
     document.getElementById('level3Page').classList.add('hidden');
     document.getElementById('level4Page').classList.add('hidden');
-    document.getElementById('tourPage').classList.remove('hidden');
+
+    document.getElementById(level + 'Page').classList.remove('hidden');
+    initializeEquirectangularViewer(containerId, levels[level]);
 }
 
 // Function to toggle the side menu
@@ -334,6 +390,28 @@ function toggleMenu() {
     }
 }
 
+
+// Function to begin the tour
+function beginTour() {
+    document.querySelector('.welcome-container').classList.add('hidden');
+    document.getElementById('tourPage').classList.remove('hidden');
+}
+
+// Add a function to handle hotspot clicks
+viewer.on('hotspotclick', function () {
+    lockRoll(); // Lock roll when hotspots are clicked
+});
+
+// Function to show the appropriate level page or to go back
+function showTourPage() {
+    document.getElementById('level1Page').classList.add('hidden');
+    document.getElementById('level2Page').classList.add('hidden');
+    document.getElementById('level3Page').classList.add('hidden');
+    document.getElementById('level4Page').classList.add('hidden');
+    document.getElementById('tourPage').classList.remove('hidden');
+}
+
+
 // Function to show the modal for info hotspots
 function showInfoModal(hotSpotDiv, args) {
     const modal = document.getElementById('infoModal');
@@ -346,6 +424,7 @@ function showInfoModal(hotSpotDiv, args) {
     infoVideo.classList.add('hidden');
 
     if (args.type === 'image') {
+        console.log("Displaying image:", args.src); // Debug log
         infoImage.src = args.src;
         infoImage.classList.remove('hidden');
     } else if (args.type === 'video') {
@@ -359,50 +438,6 @@ function closeInfoModal() {
     document.getElementById('infoModal').style.display = 'none';
 }
 
-// Preload all panoramas for the initial levels
-Object.values(levels).forEach(levelScenes => preloadPanoramas(levelScenes));
-
-
-// Adjust canvas size when window is resized
-window.addEventListener('resize', () => {
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.aspect = window.innerWidth / window.innerHeight;
-    camera.updateProjectionMatrix();
-});
-
-
-
-    // Function to reapply the roll after interactions
-    function reapplyRoll() {
-        const currentSceneId = viewer.getScene();
-        const currentScene = scenes.find(scene => scene.sceneId === currentSceneId);
-        if (currentScene && currentScene.roll !== undefined) {
-            viewer.setPitch(currentScene.pitch || 0);
-            viewer.setYaw(currentScene.yaw || 0);
-            viewer.setRoll(currentScene.roll); // Reapply roll
-        }
-    }
-
-    // Event listeners for user interactions
-    viewer.on('keydown', reapplyRoll);
-    viewer.on('mousedown', reapplyRoll);
-    viewer.on('touchstart', reapplyRoll);
-
-
-
-
-// Function to display levels (tour pages)
-function showLevels(level) {
-    document.getElementById('tourPage').classList.add('hidden');
-    document.getElementById('level1Page').classList.add('hidden');
-    document.getElementById('level2Page').classList.add('hidden');
-    document.getElementById('level3Page').classList.add('hidden');
-    document.getElementById('level4Page').classList.add('hidden');
-
-    document.getElementById(level + 'Page').classList.remove('hidden');
-    initializeEquirectangularViewer('panorama' + level.slice(-1), levels[level]);
-}
-
 
 // Include header dynamically
 fetch('header.html')
@@ -410,3 +445,10 @@ fetch('header.html')
     .then(data => {
         document.getElementById('header-placeholder').innerHTML = data;
     });
+
+
+
+
+
+    
+    

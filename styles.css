@@ -232,7 +232,7 @@ main {
 
 #panorama1, #panorama2, #panorama3, #panorama4 {
     width: 100%;
-    height: 500px; /* Adjust height as needed */
+    height: 600px; /* Adjust height as needed */
 }
 
 .admin {
@@ -269,7 +269,7 @@ main {
     cursor: pointer;
 }
 
-.modal-content.hidden {
+.hidden {
     display: none;
 }
 
@@ -301,8 +301,8 @@ main {
     
 }
 .custom-arrowInfo {
-    width: 30px;  /* Adjust the size to match your image */
-    height: 30px;
+    width: 70px;  /* Adjust the size to match your image */
+    height: 70px;
     background-image: url('info.png');  /* Path to your arrow image */
     background-size: contain;  /* Ensure the image fits the container */
     background-position: center;
@@ -310,6 +310,9 @@ main {
     border-radius: 50%;  /* If you want to keep it round */
     cursor: pointer;
     position: absolute;
+    z-index: 1000;
+    border: 2px solid red;
+    pointer-events: auto;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);  /* Add some shadow if needed */
 }
 
@@ -318,43 +321,90 @@ main {
     transition: transform 0.3s ease;
 }
 
-
-/* Container for all layers of the hotspot */
-.floor-circle-hotspot {
-    position: relative;
-    width: 50px; /* Total size of the outermost circle */
-    height: 50px;
-    transform: perspective(200px) rotateX(45deg); /* Perspective tilt */
-}
-
-/* Inner white circle */
-.floor-circle-hotspot::before {
-    content: "";
+/* Floor Hotspot Style */
+.floor-hotspot {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 15px; /* Size of the inner white circle */
-    height: 15px;
-    background-color: rgba(255, 255, 255, 1); /* Solid white color */
+    background: rgba(0, 0, 0, 0.8);
     border-radius: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2; /* Place it above the dark ring */
+    width: 30px;
+    height: 30px;
+    border: 2px solid white;
+    cursor: pointer;
+    animation: pulse 1.5s infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.pnlm-load-box {
-    display: none !important; /* Completely removes the loading screen */
-    visibility: hidden !important;
+/* Inner glowing effect for floor hotspot */
+.floor-hotspot::after {
+    content: '';
+    background: rgba(255, 255, 255, 0.8);
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    display: block;
 }
 
+/* Pulsating Animation */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.3);
+        opacity: 0.5;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+
+
+.pnlm-loading, 
+.pnlm-load-box, 
+.pnlm-loading-bar, 
+.pnlm-loading-text {
+    display: none !important;
+}
 
 .pnlm-hotspot {
-    visibility: visible !important; /* Always visible */
-    transition: transform 0.3s ease, opacity 0.3s ease; /* Smooth animation */
+    display: block; /* Ensure hotspots are always displayed */
+    opacity: 1;     /* Keep hotspots visible */
+    transition: none; /* Remove any transition effects */
 }
 
-.pnlm-hotspot:hover {
-    transform: scale(1.2);
-    opacity: 0.8;
+.panorama-container {
+    width: 100%;
+    height: 50vh; /* Makes it responsive */
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin: 10px 0;
 }
+
+/* Black overlay for fade transition */
+.transition-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    z-index: 1000; /* Ensure it appears above the viewer */
+    opacity: 0; /* Start as transparent */
+    pointer-events: none; /* Allow interactions below the overlay */
+    transition: opacity 0.5s ease-in-out; /* Smooth fade effect */
+}
+
+/* Hidden class to disable the overlay */
+.hidden {
+    display: none;
+}
+
+
+
 
 

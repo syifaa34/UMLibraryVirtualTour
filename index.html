@@ -6,7 +6,10 @@
     <title>UM Library Virtual Tour</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    
+
 </head>
 <body>
     <div id="header-placeholder"></div>
@@ -15,6 +18,8 @@
         <h1>Welcome to UM Library Virtual Tour!</h1>
         <button class="btn" onclick="beginTour()">BEGIN TOUR</button>
     </div>
+
+    
 
     <main>
         
@@ -69,6 +74,10 @@
 
     </main>
 
+    <!-- Black Fade Transition Overlay -->
+    <div id="transitionOverlay" class="transition-overlay hidden"></div>
+
+
     <script>
         // Include header
         fetch('header.html')
@@ -79,10 +88,34 @@
     </script>
 
     <!-- Pannellum Panorama Viewer -->
-    <script src="https://cdn.jsdelivr.net/npm/pannellum/build/pannellum.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>  <!-- Link to the external JavaScript file -->
 
+    
+    <script type="module">
+        // Import Firebase functions
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+        import { getDatabase } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+    
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDrLNxG24gxWbNlRcnp0WAYsXHL7mrNj6c",
+            authDomain: "um-virtual-tour-website.firebaseapp.com",
+            databaseURL: "https://um-virtual-tour-website-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "um-virtual-tour-website",
+            storageBucket: "um-virtual-tour-website.appspot.com",
+            messagingSenderId: "95965375882",
+            appId: "1:95965375882:web:19eded73cf5f0261b4ec73",
+            measurementId: "G-4CV3ZD798M"
+        };
+    
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+        const rtdb = getDatabase(app);
+    </script>
     
 
 </body>
