@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css"> <!-- Link your CSS -->
+</head>
+<body>
+    <form id="adminLoginForm">
+        <h2>Admin Login</h2>
+        <div class="form-group">
+            <input type="email" id="adminEmail" placeholder="Email" required />
+        </div>
+        <div class="form-group">
+            <input type="password" id="adminPassword" placeholder="Password" required />
+        </div>
+        <button type="submit">Login</button>
+        <div id="loginError" style="color: red; margin-top: 10px;"></div>
+    </form>
+
+    <script type="module">
+        // Import Firebase services
+        import { auth } from "../firebaseConfig.js";
+        import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+
+        // Handle Login
+        document.getElementById('adminLoginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Get input values
+            const email = document.getElementById('adminEmail').value;
+            const password = document.getElementById('adminPassword').value;
+
+            try {
+                console.log("Attempting login...");
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                console.log("Login successful:", user);
+                localStorage.setItem('isAdminLoggedIn', true);
+                window.location.href = 'update.html'; // Redirect to update page
+            } catch (error) {
+        console.error("Login error:", error.code, error.message);
+        document.getElementById('loginError').textContent = error.message;
+}
+
+        });
+    </script>
+</body>
+</html>

@@ -12,14 +12,29 @@
 
 </head>
 <body>
-    <div id="header-placeholder"></div>
+     <!-- Include header content directly -->
+     <header>
+        <div class="top-bar">
+            <span>Universiti Malaya Library</span>
+            <span><i class="fas fa-envelope"></i> query_perpustakaan@um.edu.my</span>
+            <span><i class="fas fa-phone"></i> +603 79567800</span>
+            <span class="admin">
+                <a href="admin/admin.html" style="color: white; text-decoration: none;">
+                    <i class="fas fa-user"></i> Admin
+                </a>
+            </span>
+        </div>
+    </header>
     
     <div class="welcome-container">
         <h1>Welcome to UM Library Virtual Tour!</h1>
-        <button class="btn" onclick="beginTour()">BEGIN TOUR</button>
-    </div>
+        <button class="btn" type="button" onclick="beginTour()">BEGIN TOUR</button>
+        
 
     
+        </div>
+        
+    </div>
 
     <main>
         
@@ -74,47 +89,42 @@
 
     </main>
 
-    <!-- Black Fade Transition Overlay -->
-    <div id="transitionOverlay" class="transition-overlay hidden"></div>
-
-
-    <script>
-        // Include header
-        fetch('header.html')
-            .then(response => response.text())
-            .then(data => {
-                document.getElementById('header-placeholder').innerHTML = data;
-            });
-    </script>
+   
 
     <!-- Pannellum Panorama Viewer -->
     <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="script.js"></script>  <!-- Link to the external JavaScript file -->
+   
 
     
     <script type="module">
-        // Import Firebase functions
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
-        import { getDatabase } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
-    
-        // Your Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDrLNxG24gxWbNlRcnp0WAYsXHL7mrNj6c",
-            authDomain: "um-virtual-tour-website.firebaseapp.com",
-            databaseURL: "https://um-virtual-tour-website-default-rtdb.asia-southeast1.firebasedatabase.app",
-            projectId: "um-virtual-tour-website",
-            storageBucket: "um-virtual-tour-website.appspot.com",
-            messagingSenderId: "95965375882",
-            appId: "1:95965375882:web:19eded73cf5f0261b4ec73",
-            measurementId: "G-4CV3ZD798M"
-        };
-    
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-        const rtdb = getDatabase(app);
+        // Import Firebase services from firebaseConfig.js
+        import { db } from "./firebaseConfig.js";
+        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+
+
+
+      // Function to start the tour
+      function beginTour() {
+            console.log("Begin Tour button clicked!");
+            const welcomeContainer = document.querySelector('.welcome-container');
+            const tourPage = document.getElementById('tourPage');
+
+            if (!welcomeContainer || !tourPage) {
+                console.error("Elements not found: '.welcome-container' or '#tourPage'");
+                return;
+            }
+
+            welcomeContainer.classList.add('hidden');
+            tourPage.classList.remove('hidden');
+        }
+        window.beginTour = beginTour; // Attach to global scope
+
+        
+      
+
+
     </script>
     
 
