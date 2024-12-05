@@ -39,10 +39,12 @@
 
                 console.log("Login successful:", user);
                 localStorage.setItem('isAdminLoggedIn', true);
-                window.location.href = 'update.html'; // Redirect to update page
+                window.location.href = 'updatest.html'; // Redirect to update page
             } catch (error) {
         console.error("Login error:", error.code, error.message);
         document.getElementById('loginError').textContent = error.message;
+
+        
 }
 
         });

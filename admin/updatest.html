@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Update Page</title>
+    <link rel="stylesheet" href="admin.css"> <!-- Link to your CSS -->
+</head>
+<body>
+
+
+
+<form id="adminDashboard">
+    <h3>Manage Library Information</h3>
+    <h4>Admin Dashboard</h4>
+
+
+    <!-- Dropdown to Select Category -->
+    <label for="infoCategory">Select Information:</label>
+    <select id="infoCategory">
+        <option value="counter">Counter Information</option>
+        <option value="selfKiosk">Self-Kiosk Book</option>
+        <option value="reference">Reference Section</option>
+        <option value="carrelRoom">Carrel Room</option>
+    </select>
+
+    <!-- Form for Adding or Editing Information -->
+    <br><br>
+    <label for="infoTitle">Title:</label>
+    <input type="text" id="infoTitle" placeholder="Enter title here">
+    <br><br>
+    <label for="infoDescription">Description:</label>
+    <textarea id="infoDescription" placeholder="Enter description here"></textarea>
+    <br><br>
+    <button type="button" onclick="saveInformation()">Save/Update Information</button>
+
+</form>
+
+</body>
+<script type="module" src="../firebaseConfig.js"></script>
+<script type="module" src="./adminDashboard.js" defer ></script>
+

@@ -2,8 +2,8 @@
 // Define the levels and scenes with custom pitch, yaw, and roll values
 const levels = {
     'level1': [
-        { sceneId: "scene1", pano: 'level1/1.0.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene2", pano: 'level1/1.1.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene1", pano: 'level1/1.0.jpg', pitch: 20, yaw: 2,  },
+        { sceneId: "scene2", pano: 'level1/1.1.jpg', pitch: 20, yaw: 2,  },
         { sceneId: "scene3", pano: 'level1/1.2.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene4", pano: 'level1/1.3.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene5", pano: 'level1/1.4.jpg', pitch: 20, yaw: 2, roll: 3 },
@@ -13,7 +13,6 @@ const levels = {
         { sceneId: "scene9", pano: 'level1/3.1.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene10", pano: 'level1/3.2.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene11", pano: 'level1/3.3.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene12", pano: 'level1/3.4.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene13", pano: 'level1/3.5.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene14", pano: 'level1/3.6.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene15", pano: 'level1/3.7.jpg', pitch: 20, yaw: 2, roll: 3 },
@@ -44,33 +43,33 @@ const levels = {
 const navigationMap = {
     "scene1": {
         hotspots: [
-            { pitch: -10, yaw: 5,  text: "To Scene 7", sceneId: "scene7", cssClass: "custom-arrow"},
-            { pitch: -10, yaw: 70, text: "To Scene 2", sceneId: "scene2", cssClass: "custom-arrow"},
-            { pitch: -10, yaw: -70, text: "To Scene 6", sceneId: "scene6", cssClass: "custom-arrow", targetYaw: -90, targetPitch: -20 }
+            { pitch: -10, yaw: 5,  text: "To Scene 7", sceneId: "scene7", cssClass: "custom-arrow", targetPitch: 25},
+            { pitch: -10, yaw: 70, text: "To Scene 2", sceneId: "scene2", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2},
+            { pitch: -20, yaw: -70, text: "To Scene 6", sceneId: "scene6", cssClass: "custom-arrow", targetYaw: -90, targetPitch: -20 }
         ]
     },
     "scene2": {
         hotspots: [
-            { pitch: -10, yaw: -70, text: "Back to Scene 1", sceneId: "scene2", cssClass: "custom-arrow" },
-            { pitch: -10, yaw: 70, text: "To Scene 3", sceneId: "scene3", cssClass: "custom-arrow" }
+            { pitch: -10, yaw: -70, text: "Back to Scene 1", sceneId: "scene1", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10 },
+            { pitch: -10, yaw: 70, text: "To Scene 3", sceneId: "scene3", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2 }
         ]
     },
     "scene3": {
         hotspots: [
-            { pitch: -20, yaw: -70, text: "Back to Scene 2", sceneId: "scene2", cssClass: "custom-arrow" },
-            { pitch: -10, yaw: 70, text: "To Scene 4", sceneId: "scene4", cssClass: "custom-arrow" }
+            { pitch: -20, yaw: -70, text: "Back to Scene 2", sceneId: "scene2", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10},
+            { pitch: -10, yaw: 70, text: "To Scene 4", sceneId: "scene4", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2 }
         ]
     },
     "scene4": {
         hotspots: [
-            { pitch: -10, yaw: -70, text: "Back to Scene 3", sceneId: "scene3", cssClass: "custom-arrow" },
-            { pitch: -10, yaw: 70, text: "To Scene 5", sceneId: "scene5", cssClass: "custom-arrow" }
+            { pitch: -10, yaw: -70, text: "Back to Scene 3", sceneId: "scene3", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10 },
+            { pitch: -10, yaw: 70, text: "To Scene 5", sceneId: "scene5", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2 }
 
         ]
     },
     "scene5": {
         hotspots: [
-            { pitch: -10, yaw: -100, text: "Back to Scene 4", sceneId: "scene4", cssClass: "custom-arrow"},
+            { pitch: -10, yaw: -100, text: "Back to Scene 4", sceneId: "scene4", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10},
         ]
     },
     "scene6": {
@@ -83,91 +82,78 @@ const navigationMap = {
     },
     "scene7": {
         hotspots: [
-            { pitch: -10, yaw: 5, text: "Enter the library", sceneId: "scene8", cssClass: "custom-arrow" },
-            { pitch: -80, yaw: -180, text: "Go back", sceneId: "scene1", cssClass: "custom-arrow" }
+            { pitch: -8, yaw: 5, text: "Enter the library", sceneId: "scene8", cssClass: "custom-arrow", targetPitch: 25 },
+            { pitch: -80, yaw: -180, text: "Go back", sceneId: "scene1", cssClass: "custom-arrow", targetYaw: 20, targetPitch: 2 }
 
         ]
     },
     "scene8": {
         hotspots: [
-            { pitch: -10, yaw: 5, text: "To scene 11", sceneId: "scene11", cssClass: "custom-arrow" },
-            { pitch: -35, yaw: -95, text: "To scene 9", sceneId: "scene9", cssClass: "custom-arrow" },
+            { pitch: -8, yaw: 5, text: "To scene 11", sceneId: "scene11", cssClass: "custom-arrow", targetPitch: 20 },
+            { pitch: -35, yaw: -95, text: "To scene 9", sceneId: "scene9", cssClass: "custom-arrow",targetYaw: 10, targetPitch: 8 },
             { pitch: -5, yaw: -105, type: "info", text: "Info 1", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }} ,
-            { pitch: -80, yaw: -180, text: "Go back", sceneId: "scene7", cssClass: "custom-arrow" }
+            { pitch: -15, yaw: -180, text: "Go back", sceneId: "scene7", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
 
         ]
     },
     "scene9": {
         hotspots: [
-            { pitch: 0, yaw: 30, text: "To scene 10", sceneId: "scene10", cssClass: "custom-arrow" },
-            { pitch: -5, yaw: 60, text: "Go back", sceneId: "scene8", cssClass: "custom-arrow" },
+            { pitch: -15, yaw: 10, text: "To scene 10", sceneId: "scene10", cssClass: "custom-arrow",targetYaw: 12, targetPitch: 8 },
+            { pitch: -60, yaw: -160, text: "Go back", sceneId: "scene8", cssClass: "custom-arrow", targetYaw: 60, targetPitch: -5},
 
     
         ]
     },
     "scene10": {
         hotspots: [
-            { pitch: -5, yaw: 60, text: "Go back", sceneId: "scene9", cssClass: "custom-arrow" }
+            { pitch: -50, yaw: -160, text: "Go back", sceneId: "scene9", cssClass: "custom-arrow", targetYaw: -165, targetPitch: -20}
 
         ]
     },
     "scene11": {
         hotspots: [
-            { pitch: -25, yaw: 6, text: "To scene 12", sceneId: "scene12", cssClass: "custom-arrow" },
-            { pitch: -80, yaw: -180, text: "Go back", sceneId: "scene8", cssClass: "custom-arrow" }
-
-        ]
-    },
-    "scene12": {
-        hotspots: [
-            { pitch: -30, yaw: 5, text: "To scene 13", sceneId: "scene13", cssClass: "custom-arrow" },
-            { pitch: -80, yaw:-180, text: "Go back", sceneId: "scene11", cssClass: "custom-arrow" }
+            { pitch: -10, yaw: -1, text: "To scene 13", sceneId: "scene13", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -20  },
+            { pitch: -55, yaw: -210, text: "Go back", sceneId: "scene8", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -20 }
 
         ]
     },
     "scene13": {
         hotspots: [
-            { pitch: -30, yaw: 100, text: "To scene 14", sceneId: "scene14", cssClass: "custom-arrow" },
-            { pitch: -40, yaw: -120, text: "To scene 18", sceneId: "scene18", cssClass: "custom-arrow" },
-            { pitch: -10, yaw: 5, text: "Go back", sceneId: "scene12", cssClass: "custom-arrow" }
+            { pitch: -30, yaw: 100, text: "To scene 14", sceneId: "scene14", cssClass: "custom-arrow", targetPitch: 20 },
+            { pitch: -40, yaw: -120, text: "To scene 18", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: 7, targetPitch: 30 },
+            { pitch: -5, yaw: -8, text: "Go back", sceneId: "scene11", cssClass: "custom-arrow" }
 
         ]
     },
     "scene14": {
         hotspots: [
-            { pitch: -5, yaw: 6, type: "info", text: "Library Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }} ,
-            { pitch: -20, yaw: 100, text: "To scene 15", sceneId: "scene15", cssClass: "custom-arrow" },
-            { pitch: -50, yaw: -180, text: "To scene 18", sceneId: "scene18", cssClass: "custom-arrow" },
+            { pitch: 20, yaw: 6, type: "info", text: "Library Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }} ,
+            { pitch: -20, yaw: 100, text: "To scene 15", sceneId: "scene15", cssClass: "custom-arrow",targetYaw: 5, targetPitch: 20},
+            { pitch: -50, yaw: -180, text: "To scene 18", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: 70, targetPitch: -10 },
             { pitch: -50, yaw: -120, text: "Go back", sceneId: "scene13", cssClass: "custom-arrow" }
 
         ]
     },
     "scene15": {
         hotspots: [
-            { pitch: -10, yaw: 5, text: "To scene 16", sceneId: "scene16", cssClass: "custom-arrow" },
+            { pitch: -10, yaw: 5, text: "To scene 16", sceneId: "scene16", cssClass: "custom-arrow", targetYaw: 5, targetPitch: 25 },
             { pitch: -10, yaw: 60, text: "To scene 26", sceneId: "scene26", cssClass: "custom-arrow" },
-            { pitch: -40, yaw: -180, text: "Go back", sceneId: "scene14", cssClass: "custom-arrow" }
+            { pitch: -40, yaw: -180, text: "Go back", sceneId: "scene14", cssClass: "custom-arrow",targetYaw: -90, targetPitch: -20 }
 
         ]
     },
     "scene16": {
         hotspots: [
-            { pitch: -10, yaw: 5, text: "To scene 17", sceneId: "scene17", cssClass: "custom-arrow" },
-            { pitch: -50, yaw: -150, text: "Go back", sceneId: "scene15", cssClass: "custom-arrow" }
+            { pitch: 30, yaw: -5, type: "info", text: "Carrel Room OKU", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }} ,
+            { pitch: -50, yaw: -170, text: "Go back", sceneId: "scene15", cssClass: "custom-arrow",targetYaw: -160, targetPitch: -20 }
 
         ]
     },
-    "scene17": {
-        hotspots: [
-            { pitch: -5, yaw: 6, type: "info", text: "Carrel Room OKU", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }} ,
-            { pitch: -50, yaw: -160, text: "Go back", sceneId: "scene16", cssClass: "custom-arrow" }
-
-        ]
-    },
+    
     "scene18": {
         hotspots: [
-            { pitch: -30, yaw: 80, text: "To scene 19", sceneId: "scene19", cssClass: "custom-arrow" },
-            { pitch: -40, yaw: -70, text: "Go to scene 14", sceneId: "scene14", cssClass: "custom-arrow" },
+            { pitch: -30, yaw: 80, text: "To scene 19", sceneId: "scene19", cssClass: "custom-arrow",targetYaw: 70, targetPitch: -10 },
+            { pitch: -40, yaw: -100, text: "Go to scene 14", sceneId: "scene14", cssClass: "custom-arrow" },
             { pitch: -40, yaw: -160, text: "Go to scene 13", sceneId: "scene13", cssClass: "custom-arrow" }
 
 

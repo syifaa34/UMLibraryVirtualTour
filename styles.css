@@ -295,18 +295,18 @@ main {
 
 /* Custom Arrow Styling */
 .custom-arrow {
-    width: 70px;  /* Adjust the size to match your image */
-    height: 70px;
-    background-image: url('arrow1.png');  /* Path to your arrow image */
-    background-size: contain;  /* Ensure the image fits the container */
-    background-position: center;
-    background-repeat: no-repeat;
-    border-radius: 50%;  /* If you want to keep it round */
-    cursor: pointer;  
-      
+        position: absolute;
+        transform: translate(-50%, -50%); /* Center the hotspot */
+        width: 100px;
+        height: 100px;
+        background: url('3d_arrow.png') no-repeat center;
+        background-size: contain;
+        cursor: pointer;
+    }
+    
 
     
-}
+
 .custom-arrowInfo {
     width: 70px;  /* Adjust the size to match your image */
     height: 70px;
