@@ -1,6 +1,8 @@
 import { database } from '../firebaseConfig.js';
 import { ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 
+
+
 // Function to save or update information
 function saveInformation() {
     const category = document.getElementById("infoCategory").value;

@@ -1,4 +1,5 @@
-
+import { database } from './firebaseConfig.js';
+import { ref, get } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
 // Define the levels and scenes with custom pitch, yaw, and roll values
 const levels = {
     'level1': [
@@ -43,184 +44,188 @@ const levels = {
 const navigationMap = {
     "scene1": {
         hotspots: [
-            { pitch: -10, yaw: 5,  text: "To Scene 7", sceneId: "scene7", cssClass: "custom-arrow", targetPitch: 25},
-            { pitch: -10, yaw: 70, text: "To Scene 2", sceneId: "scene2", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2},
-            { pitch: -20, yaw: -70, text: "To Scene 6", sceneId: "scene6", cssClass: "custom-arrow", targetYaw: -90, targetPitch: -20 }
+            { pitch: -10, yaw: 5,  text: "", sceneId: "scene7", cssClass: "custom-arrow", targetYaw: 4, targetPitch: 25},
+            { pitch: -10, yaw: 70, text: "", sceneId: "scene2", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2},
+            { pitch: -20, yaw: -70, text: "", sceneId: "scene6", cssClass: "custom-arrow", targetYaw: -90, targetPitch: -20 }
         ]
     },
     "scene2": {
         hotspots: [
-            { pitch: -10, yaw: -70, text: "Back to Scene 1", sceneId: "scene1", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10 },
-            { pitch: -10, yaw: 70, text: "To Scene 3", sceneId: "scene3", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2 }
+            { pitch: -10, yaw: -70, text: "", sceneId: "scene1", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10 },
+            { pitch: -10, yaw: 70, text: "", sceneId: "scene3", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2 }
         ]
     },
     "scene3": {
         hotspots: [
-            { pitch: -20, yaw: -70, text: "Back to Scene 2", sceneId: "scene2", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10},
-            { pitch: -10, yaw: 70, text: "To Scene 4", sceneId: "scene4", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2 }
+            { pitch: -20, yaw: -70, text: "", sceneId: "scene2", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10},
+            { pitch: -10, yaw: 70, text: "", sceneId: "scene4", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2 }
         ]
     },
     "scene4": {
         hotspots: [
-            { pitch: -10, yaw: -70, text: "Back to Scene 3", sceneId: "scene3", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10 },
-            { pitch: -10, yaw: 70, text: "To Scene 5", sceneId: "scene5", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2 }
+            { pitch: -10, yaw: -70, text: "", sceneId: "scene3", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10 },
+            { pitch: -10, yaw: 70, text: "", sceneId: "scene5", cssClass: "custom-arrow", targetYaw: 50, targetPitch: -2 }
 
         ]
     },
     "scene5": {
         hotspots: [
-            { pitch: -10, yaw: -100, text: "Back to Scene 4", sceneId: "scene4", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10},
+            { pitch: -10, yaw: -100, text: "", sceneId: "scene4", cssClass: "custom-arrow", targetYaw: -50, targetPitch: 10},
         ]
     },
     "scene6": {
         
         hotspots: [
-            { pitch: -30, yaw: 100, text: "Back to Scene 1", sceneId: "scene1", cssClass: "custom-arrow", targetYaw: 80, targetPitch: -5},
+            { pitch: -30, yaw: 100, text: "", sceneId: "scene1", cssClass: "custom-arrow", targetYaw: 80, targetPitch: -5},
 
         ]
         
     },
     "scene7": {
         hotspots: [
-            { pitch: -8, yaw: 5, text: "Enter the library", sceneId: "scene8", cssClass: "custom-arrow", targetPitch: 25 },
-            { pitch: -80, yaw: -180, text: "Go back", sceneId: "scene1", cssClass: "custom-arrow", targetYaw: 20, targetPitch: 2 }
+            { pitch: -8, yaw: 5, text: "", sceneId: "scene8", cssClass: "custom-arrow", targetPitch: 25 },
+            { pitch: -80, yaw: -180, text: "", sceneId: "scene1", cssClass: "custom-arrow", targetYaw: 20, targetPitch: 2 }
 
         ]
     },
     "scene8": {
         hotspots: [
-            { pitch: -8, yaw: 5, text: "To scene 11", sceneId: "scene11", cssClass: "custom-arrow", targetPitch: 20 },
-            { pitch: -35, yaw: -95, text: "To scene 9", sceneId: "scene9", cssClass: "custom-arrow",targetYaw: 10, targetPitch: 8 },
-            { pitch: -5, yaw: -105, type: "info", text: "Info 1", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }} ,
-            { pitch: -15, yaw: -180, text: "Go back", sceneId: "scene7", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
+            { pitch: -8, yaw: 5, text: "", sceneId: "scene11", cssClass: "custom-arrow", targetPitch: 20 },
+            { pitch: -35, yaw: -95, text: "", sceneId: "scene9", cssClass: "custom-arrow",targetYaw: 10, targetPitch: 8 },
+            { pitch: -5, yaw: -105, type: "", text: "Self Service Book Return Kiosk", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "selfKiosk" }} ,
+            { pitch: -15, yaw: -180, text: "", sceneId: "scene7", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
 
         ]
     },
     "scene9": {
         hotspots: [
-            { pitch: -15, yaw: 10, text: "To scene 10", sceneId: "scene10", cssClass: "custom-arrow",targetYaw: 12, targetPitch: 8 },
-            { pitch: -60, yaw: -160, text: "Go back", sceneId: "scene8", cssClass: "custom-arrow", targetYaw: 60, targetPitch: -5},
+            { pitch: -15, yaw: 10, text: "", sceneId: "scene10", cssClass: "custom-arrow",targetYaw: 12, targetPitch: 8 },
+            { pitch: -60, yaw: -160, text: "", sceneId: "scene8", cssClass: "custom-arrow", targetYaw: 60, targetPitch: -5},
+            { pitch: -5, yaw: -105, type: "info", text: "Self Kiosk Return Book", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }} ,
+
 
     
         ]
     },
     "scene10": {
         hotspots: [
-            { pitch: -50, yaw: -160, text: "Go back", sceneId: "scene9", cssClass: "custom-arrow", targetYaw: -165, targetPitch: -20}
+            { pitch: -50, yaw: -160, text: "", sceneId: "scene9", cssClass: "custom-arrow", targetYaw: -165, targetPitch: -20}
 
         ]
     },
     "scene11": {
         hotspots: [
-            { pitch: -10, yaw: -1, text: "To scene 13", sceneId: "scene13", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -20  },
-            { pitch: -55, yaw: -210, text: "Go back", sceneId: "scene8", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -20 }
+            { pitch: -10, yaw: -1, text: "", sceneId: "scene13", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -20  },
+            { pitch: -55, yaw: -210, text: "", sceneId: "scene8", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -20 }
 
         ]
     },
     "scene13": {
         hotspots: [
-            { pitch: -30, yaw: 100, text: "To scene 14", sceneId: "scene14", cssClass: "custom-arrow", targetPitch: 20 },
-            { pitch: -40, yaw: -120, text: "To scene 18", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: 7, targetPitch: 30 },
-            { pitch: -5, yaw: -8, text: "Go back", sceneId: "scene11", cssClass: "custom-arrow" }
+            { pitch: -30, yaw: 100, text: "", sceneId: "scene14", cssClass: "custom-arrow", targetPitch: 20 },
+            { pitch: -40, yaw: -120, text: "", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: 7, targetPitch: 30 },
+            { pitch: -5, yaw: -8, text: "", sceneId: "scene11", cssClass: "custom-arrow" }
 
         ]
     },
     "scene14": {
         hotspots: [
-            { pitch: 20, yaw: 6, type: "info", text: "Library Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }} ,
-            { pitch: -20, yaw: 100, text: "To scene 15", sceneId: "scene15", cssClass: "custom-arrow",targetYaw: 5, targetPitch: 20},
-            { pitch: -50, yaw: -180, text: "To scene 18", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: 70, targetPitch: -10 },
-            { pitch: -50, yaw: -120, text: "Go back", sceneId: "scene13", cssClass: "custom-arrow" }
+            { pitch: 20, yaw: 6, type: "info", text: "Library Counter Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "counter" }} ,
+            { pitch: -20, yaw: 100, text: "", sceneId: "scene15", cssClass: "custom-arrow",targetYaw: 5, targetPitch: 20},
+            { pitch: -50, yaw: -180, text: "", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: 70, targetPitch: -10 },
+            { pitch: -50, yaw: -120, text: "", sceneId: "scene13", cssClass: "custom-arrow" }
 
         ]
     },
     "scene15": {
         hotspots: [
-            { pitch: -10, yaw: 5, text: "To scene 16", sceneId: "scene16", cssClass: "custom-arrow", targetYaw: 5, targetPitch: 25 },
-            { pitch: -10, yaw: 60, text: "To scene 26", sceneId: "scene26", cssClass: "custom-arrow" },
-            { pitch: -40, yaw: -180, text: "Go back", sceneId: "scene14", cssClass: "custom-arrow",targetYaw: -90, targetPitch: -20 }
+            { pitch: -10, yaw: 5, text: "", sceneId: "scene16", cssClass: "custom-arrow", targetYaw: 5, targetPitch: 25 },
+            { pitch: -10, yaw: 60, text: "", sceneId: "scene26", cssClass: "custom-arrow" },
+            { pitch: -40, yaw: -180, text: "", sceneId: "scene14", cssClass: "custom-arrow",targetYaw: -90, targetPitch: -20 },
+            { pitch: 20, yaw: 45, type: "info", text: "Digital Corner", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "digitalCorner" }} ,
+
 
         ]
     },
     "scene16": {
         hotspots: [
-            { pitch: 30, yaw: -5, type: "info", text: "Carrel Room OKU", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }} ,
-            { pitch: -50, yaw: -170, text: "Go back", sceneId: "scene15", cssClass: "custom-arrow",targetYaw: -160, targetPitch: -20 }
+            { pitch: 30, yaw: -5, type: "info", text: "Reserved Carrel", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "reservedCarrel" }} ,
+            { pitch: -50, yaw: -170, text: "", sceneId: "scene15", cssClass: "custom-arrow",targetYaw: -160, targetPitch: -20 }
 
         ]
     },
     
     "scene18": {
         hotspots: [
-            { pitch: -30, yaw: 80, text: "To scene 19", sceneId: "scene19", cssClass: "custom-arrow",targetYaw: 70, targetPitch: -10 },
-            { pitch: -40, yaw: -100, text: "Go to scene 14", sceneId: "scene14", cssClass: "custom-arrow" },
-            { pitch: -40, yaw: -160, text: "Go to scene 13", sceneId: "scene13", cssClass: "custom-arrow" }
+            { pitch: -30, yaw: 80, text: "", sceneId: "scene19", cssClass: "custom-arrow",targetYaw: 70, targetPitch: -10 },
+            { pitch: -40, yaw: -100, text: "", sceneId: "scene14", cssClass: "custom-arrow" },
+            { pitch: -40, yaw: -160, text: "", sceneId: "scene13", cssClass: "custom-arrow" }
 
 
         ]
     },
     "scene19": {
         hotspots: [
-            { pitch: -3, yaw: 5, type: "info", text: "Reference Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showInfoModal, clickHandlerArgs: { "type": "image", "src": "imageinfo.png" }},
-            { pitch: -40, yaw: 80, text: "To scene 20", sceneId: "scene20", cssClass: "custom-arrow" },
-            { pitch: -60, yaw: 200, text: "Go out from library", sceneId: "scene22", cssClass: "custom-arrow" },
-            { pitch: -40, yaw: -80, text: "Go back", sceneId: "scene18", cssClass: "custom-arrow" }
+            { pitch: -3, yaw: 5, type: "info", text: "Reference Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "reference" }},
+            { pitch: -40, yaw: 80, text: "", sceneId: "scene20", cssClass: "custom-arrow" },
+            { pitch: -60, yaw: 200, text: "", sceneId: "scene22", cssClass: "custom-arrow" },
+            { pitch: -40, yaw: -80, text: "", sceneId: "scene18", cssClass: "custom-arrow" }
 
         ]
     },
     "scene20": {
         hotspots: [
-            { pitch: -10, yaw: 50, text: "To scene 21", sceneId: "scene21", cssClass: "custom-arrow" },
-            { pitch: -50, yaw: -180, text: "Go back", sceneId: "scene19", cssClass: "custom-arrow" }
+            { pitch: -10, yaw: 50, text: "", sceneId: "scene21", cssClass: "custom-arrow" },
+            { pitch: -50, yaw: -180, text: "", sceneId: "scene19", cssClass: "custom-arrow" }
 
         ]
     },
     "scene21": {
         hotspots: [
-            { pitch: -10, yaw: 1, text: "Go to level 2", sceneId: "scene21", cssClass: "custom-arrow" },
-            { pitch: -20, yaw: 80, text: "Go back", sceneId: "scene20", cssClass: "custom-arrow" }
+            { pitch: -10, yaw: 1, text: "", sceneId: "scene21", cssClass: "custom-arrow" },
+            { pitch: -20, yaw: 80, text: "", sceneId: "scene20", cssClass: "custom-arrow" }
 
         ]
     },
     "scene22": {
         hotspots: [
-            { pitch: -20, yaw: 5, text: "To scene 23", sceneId: "scene23", cssClass: "custom-arrow" },
-            { pitch: -60, yaw: -180, text: "Go back", sceneId: "scene19", cssClass: "custom-arrow" }
+            { pitch: -20, yaw: 5, text: "", sceneId: "scene23", cssClass: "custom-arrow" },
+            { pitch: -60, yaw: -180, text: "", sceneId: "scene19", cssClass: "custom-arrow" }
 
         ]
     },
     "scene23": {
             hotspots: [
-                { pitch: -30, yaw: 5, text: "To scene 24", sceneId: "scene24", cssClass: "custom-arrow" },
-                { pitch: -40, yaw: -200, text: "Go back", sceneId: "scene22", cssClass: "custom-arrow" }
+                { pitch: -30, yaw: 5, text: "", sceneId: "scene24", cssClass: "custom-arrow" },
+                { pitch: -40, yaw: -200, text: "", sceneId: "scene22", cssClass: "custom-arrow" }
 
             ]
         },
     "scene24": {
             hotspots: [
-                { pitch: -20, yaw: 5, text: "Go out", sceneId: "scene24", cssClass: "custom-arrow" },
-                { pitch: -60, yaw: -180, text: "Go back", sceneId: "scene23", cssClass: "custom-arrow" }
+                { pitch: -20, yaw: 5, text: "", sceneId: "scene24", cssClass: "custom-arrow" },
+                { pitch: -60, yaw: -180, text: "", sceneId: "scene23", cssClass: "custom-arrow" }
 
             ]
         },
 
     "scene26": {
         hotspots: [
-            { pitch: -10, yaw: 5, text: "To scene 27", sceneId: "scene27", cssClass: "custom-arrow" },
-            { pitch: -60, yaw: -180, text: "Go back", sceneId: "scene15", cssClass: "custom-arrow" }
+            { pitch: -10, yaw: 5, text: "", sceneId: "scene27", cssClass: "custom-arrow" },
+            { pitch: -60, yaw: -180, text: "", sceneId: "scene15", cssClass: "custom-arrow" }
 
         ]
     },
     "scene27": {
         hotspots: [
-            { pitch: -60, yaw: -90, text: "Go back", sceneId: "scene26", cssClass: "custom-arrow" }
+            { pitch: -60, yaw: -90, text: "", sceneId: "scene26", cssClass: "custom-arrow" }
 
         ]
    
     },
     "scene28": {
         hotspots: [
-            { pitch: -60, yaw: -90, text: "Go back", sceneId: "scene21", cssClass: "custom-arrow" }
+            { pitch: -60, yaw: -90, text: "", sceneId: "scene21", cssClass: "custom-arrow" }
 
 
         ]
@@ -248,6 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
 
 
 // Function to add all hotspots for a scene based on the navigation map
@@ -284,6 +290,25 @@ function preloadNextScene(sceneId, level) {
         img.src = nextScene.pano; // Cache next panorama image
     }
 }
+window.preloadNextScene = preloadNextScene;
+
+// Function to start the tour
+function beginTour() {
+    console.log("Begin Tour button clicked!");
+    const welcomeContainer = document.querySelector('.welcome-container');
+    const tourPage = document.getElementById('tourPage');
+
+    if (!welcomeContainer || !tourPage) {
+        console.error("Elements not found: '.welcome-container' or '#tourPage'");
+        return;
+    }
+
+    welcomeContainer.classList.add('hidden');
+    tourPage.classList.remove('hidden');
+}
+
+// Attach to global scope
+window.beginTour = beginTour;
 
 
 // Function to initialize the viewer with multiple scenes and hotspots for each level
@@ -365,6 +390,7 @@ function showLevels(level) {
     document.getElementById(level + 'Page').classList.remove('hidden');
     initializeEquirectangularViewer(containerId, levels[level]);
 }
+window.showLevels = showLevels;
 
 // Function to toggle the side menu
 function toggleMenu() {
@@ -379,6 +405,7 @@ function toggleMenu() {
         arrowIcon.classList.replace('fa-chevron-right', 'fa-chevron-left'); // Switch to left-facing arrow
     }
 }
+window.toggleMenu = toggleMenu;
 
 // Function to show the appropriate level page or to go back
 function showTourPage() {
@@ -388,38 +415,56 @@ function showTourPage() {
     document.getElementById('level4Page').classList.add('hidden');
     document.getElementById('tourPage').classList.remove('hidden');
 }
+window.showTourPage = showTourPage;
 
 
-// Function to show the modal for info hotspots
-function showInfoModal(hotSpotDiv, args) {
-    const modal = document.getElementById('infoModal');
-    const infoImage = document.getElementById('infoImage');
-    const infoVideo = document.getElementById('infoVideo');
+function showDatabaseInfoModal(hotSpotDiv, args) {
+    const category = args.category; // Get the category passed via `clickHandlerArgs`
 
-    modal.style.display = 'block';
-
-    infoImage.classList.add('hidden');
-    infoVideo.classList.add('hidden');
-
-    if (args.type === 'image') {
-        console.log("Displaying image:", args.src); // Debug log
-        infoImage.src = args.src;
-        infoImage.classList.remove('hidden');
-    } else if (args.type === 'video') {
-        infoVideo.src = args.src;
-        infoVideo.classList.remove('hidden');
+    if (!category) {
+        alert("No category specified for this hotspot.");
+        return;
     }
+
+    // Reference the Firebase path
+    const infoRef = ref(database, `libraryInfo/${category}`);
+
+    // Fetch the information from Firebase
+    get(infoRef)
+        .then((snapshot) => {
+            if (snapshot.exists()) {
+                const info = snapshot.val();
+
+                // Get modal elements
+                const modal = document.getElementById("infoModal");
+                const infoTitle = document.getElementById("infoTitle");
+                const infoDescription = document.getElementById("infoDescription");
+
+                // Update modal content
+                infoTitle.textContent = info.title || "No Title Available";
+                infoDescription.textContent = info.description || "No Description Available";
+
+                // Show the modal
+                modal.style.display = "block";
+            } else {
+                alert("No information found for this category.");
+            }
+        })
+        .catch((error) => {
+            console.error("Error fetching information from Firebase:", error);
+        });
 }
 
-// Function to close the modal
-function closeInfoModal() {
-    document.getElementById('infoModal').style.display = 'none';
-}
-
-
-
-
-
-
+// Attach globally
+window.showDatabaseInfoModal = showDatabaseInfoModal;
     
+
+function closeModal() {
+    const modal = document.getElementById("infoModal");
+    modal.style.display = "none";
+}
+
+// Attach globally
+window.closeModal = closeModal;
+
     

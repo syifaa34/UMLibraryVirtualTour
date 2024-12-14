@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>
     
 
 </head>
@@ -42,9 +42,10 @@
             <h2 class="tour-heading">Tour UM Library, from anywhere</h2>
             <p class="tour-description">Experience our interactive virtual tour today!</p>
 
-            <button class="menu-toggle" onclick="toggleMenu()">
+            <button class="menu-toggle" onclick="toggleMenu()" aria-label="Toggle side menu" title="Toggle side menu">
                 <i class="fas fa-chevron-right" id="arrow-icon"></i>
             </button>
+            
 
             
           <!-- Side Navigation -->
@@ -78,13 +79,14 @@
         </div>
 
         <!-- Modal for Image and Video -->
-        <div id="infoModal" class="modal hidden">
-            <span class="close-btn" onclick="closeInfoModal()">&times;</span>
-            <div id="modalContent">
-                <img id="infoImage" class="modal-content hidden" alt="info image">
-                <video id="infoVideo" class="modal-content hidden" controls></video>
+        <div id="infoModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="infoTitle">Information Title</h2>
+                <p id="infoDescription">Information Description</p>
             </div>
         </div>
+        
 
 
     </main>
@@ -94,38 +96,10 @@
     <!-- Pannellum Panorama Viewer -->
     <script src="https://cdn.jsdelivr.net/npm/pannellum@2.5.6/build/pannellum.js"></script>    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="script.js"></script>  <!-- Link to the external JavaScript file -->
-   
+    <script type="module" src="script.js"></script>
+    <script type="module" src="./firebaseConfig.js"></script>
 
     
-    <script type="module">
-        // Import Firebase services from firebaseConfig.js
-        import { db } from "./firebaseConfig.js";
-        import { doc, getDoc } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
-
-
-
-      // Function to start the tour
-      function beginTour() {
-            console.log("Begin Tour button clicked!");
-            const welcomeContainer = document.querySelector('.welcome-container');
-            const tourPage = document.getElementById('tourPage');
-
-            if (!welcomeContainer || !tourPage) {
-                console.error("Elements not found: '.welcome-container' or '#tourPage'");
-                return;
-            }
-
-            welcomeContainer.classList.add('hidden');
-            tourPage.classList.remove('hidden');
-        }
-        window.beginTour = beginTour; // Attach to global scope
-
-        
-      
-
-
-    </script>
     
 
 </body>

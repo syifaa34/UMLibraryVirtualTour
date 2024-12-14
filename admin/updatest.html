@@ -11,17 +11,16 @@
 
 
 <form id="adminDashboard">
-    <h3>Manage Library Information</h3>
-    <h4>Admin Dashboard</h4>
-
-
+    <h2>Manage Library Information</h2>
+   
     <!-- Dropdown to Select Category -->
     <label for="infoCategory">Select Information:</label>
     <select id="infoCategory">
         <option value="counter">Counter Information</option>
         <option value="selfKiosk">Self-Kiosk Book</option>
         <option value="reference">Reference Section</option>
-        <option value="carrelRoom">Carrel Room</option>
+        <option value="reservedCarrel">Reserved Carrel</option>
+        <option value="digitalCorner">Digital Corner</option>
     </select>
 
     <!-- Form for Adding or Editing Information -->
@@ -33,8 +32,10 @@
     <textarea id="infoDescription" placeholder="Enter description here"></textarea>
     <br><br>
     <button type="button" onclick="saveInformation()">Save/Update Information</button>
+    <button type="button" onclick="window.location.href = './updatedInfo.html';">View Information</button>
 
 </form>
+
 
 </body>
 <script type="module" src="../firebaseConfig.js"></script>
