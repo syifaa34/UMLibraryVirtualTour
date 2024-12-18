@@ -151,3 +151,27 @@ form button:hover {
     background-color: #c82333;
 }
 
+/* Positioning the Logout Button */
+.logout-container {
+    position: absolute; /* Position relative to the page */
+    top: 20px;          /* 20px from the top */
+    right: 20px;        /* 20px from the right */
+    z-index: 1000;      /* Ensures it stays above other elements */
+}
+
+.logout-button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: darkred; /* Darker shade on hover */
+}
+
+

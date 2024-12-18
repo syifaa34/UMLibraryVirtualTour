@@ -101,11 +101,22 @@ function deleteInformation(category) {
     }
 }
 
+// Logout function to redirect to index.html
+function logout() {
+    const confirmation = confirm("Are you sure you want to logout?");
+    if (confirmation) {
+        console.log("Logging out...");
+        window.location.href = "../index.html"; // Redirect to index.html
+    } else {
+        console.log("Logout canceled.");
+    }
+}
 // Attach functions to global scope for HTML buttons
 window.saveInformation = saveInformation;
 window.editInformation = editInformation;
 window.deleteInformation = deleteInformation;
 window.fetchUpdatedInfo = fetchUpdatedInfo;
+window.logout = logout;
 
 // Automatically fetch updated info on page load (if applicable)
 if (document.getElementById("infoList")) {

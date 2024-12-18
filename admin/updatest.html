@@ -31,9 +31,16 @@
     <label for="infoDescription">Description:</label>
     <textarea id="infoDescription" placeholder="Enter description here"></textarea>
     <br><br>
+    <label for="infoFile">Upload Image/Video:</label>
+    <input type="file" id="infoFile" accept="image/*, video/*" required>
+    <br><br>
+
     <button type="button" onclick="saveInformation()">Save/Update Information</button>
     <button type="button" onclick="window.location.href = './updatedInfo.html';">View Information</button>
-
+    <div class="logout-container">
+        <button type="button" class="logout-button" onclick="logout()">Logout</button>
+    </div>
+    
 </form>
 
 

@@ -39,3 +39,7 @@ fetchUpdatedInfo();
 
 // Attach functions to the global scope for buttons
 window.goBack = goBack;
+
+
+
+
