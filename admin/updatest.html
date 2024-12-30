@@ -16,11 +16,28 @@
     <!-- Dropdown to Select Category -->
     <label for="infoCategory">Select Information:</label>
     <select id="infoCategory">
-        <option value="counter">Counter Information</option>
-        <option value="selfKiosk">Self-Kiosk Book</option>
-        <option value="reference">Reference Section</option>
-        <option value="reservedCarrel">Reserved Carrel</option>
-        <option value="digitalCorner">Digital Corner</option>
+        <option value="counter">L1:Library Counter Information</option>
+        <option value="selfKiosk">L1:Self-Returning Book Kiosk</option>
+        <option value="reference">L1:Reference Counter Information</option>
+        <option value="reservedCarrel">L1:Reserved Carrel Room</option>
+        <option value="digitalCorner">L1:Digital Corner</option>
+        <option value="playandrest">L1:Play and Rest Information</option>
+        <option value="mindaHall">L2:Minda Hall</option>
+        <option value="computers">L2:Computers</option>
+        <option value="toilet">L2:Toilet</option>
+        <option value="aseanCorner">L2:ASEAN Corner</option>
+        <option value="24HoursLibrary">L2:24 Hours Library Information</option>
+        <option value="carrelRoom">L2:Carrel Room Information</option>
+        <option value="printing">L3:Printing Information</option>
+        <option value="colA">L3:CoLA</option>
+        <option value="blueZone">L3:Blue Zone</option>
+        <option value="musolla">L4:Musolla</option>
+
+
+
+
+
+
     </select>
 
     <!-- Form for Adding or Editing Information -->
@@ -32,7 +49,7 @@
     <textarea id="infoDescription" placeholder="Enter description here"></textarea>
     <br><br>
     <label for="infoFile">Upload Image/Video:</label>
-    <input type="file" id="infoFile" accept="image/*, video/*" required>
+    <input type="file" id="infoFile" accept="image/*, video/*">
     <br><br>
 
     <button type="button" onclick="saveInformation()">Save/Update Information</button>
