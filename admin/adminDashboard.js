@@ -1,5 +1,7 @@
 import { database } from '../firebaseConfig.js';
 import { ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js";
+import { getStorage, ref as storageRef, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-storage.js";
+
 
 
 
@@ -8,6 +10,8 @@ function saveInformation() {
     const category = document.getElementById("infoCategory").value;
     const title = document.getElementById("infoTitle").value;
     const description = document.getElementById("infoDescription").value;
+    const fileInput = document.getElementById("infoFile");
+    const file = fileInput.files[0];
 
     // Validate inputs
     if (!title || !description) {
@@ -17,22 +21,59 @@ function saveInformation() {
     }
 
     console.log("Saving information to Firebase...");
-    console.log("Category:", category, "Title:", title, "Description:", description);
+    console.log("Category:", category, "Title:", title, "Description:", description, "File:", file ? file.name : "No file uploaded");
 
-    // Save to Firebase
-    set(ref(database, 'libraryInfo/' + category), {
-        title: title,
-        description: description
-    })
-        .then(() => {
-            console.log(`Data saved successfully in category: ${category}`);
-            alert(`Information for ${category} saved successfully!`);
-            // Redirect to updated info page
-            window.location.href = "./updatedInfo.html";
-        })
-        .catch((error) => {
-            console.error("Error saving information:", error);
-        });
+    if (file) {
+        // Upload new file to Firebase Storage
+        const filePath = `libraryMedia/${category}/${file.name}`;
+        const fileRef = storageRef(getStorage(), filePath);
+        
+        uploadBytes(fileRef, file)
+            .then(() => getDownloadURL(fileRef))
+            .then((fileURL) => {
+                return set(ref(database, 'libraryInfo/' + category), {
+                    title: title,
+                    description: description,
+                    mediaURL: fileURL,
+                    mediaType: file.type.includes("image") ? "image" : "video"
+                });
+            })
+            .then(() => {
+                alert(`Information for ${category} saved successfully!`);
+                window.location.href = "./updatedInfo.html";
+            })
+            .catch((error) => {
+                console.error("Error saving information:", error);
+            });
+    } else {
+        // Fetch existing information to retain mediaURL and mediaType
+        get(ref(database, 'libraryInfo/' + category))
+            .then((snapshot) => {
+                if (snapshot.exists()) {
+                    const existingInfo = snapshot.val();
+                    return set(ref(database, 'libraryInfo/' + category), {
+                        title: title,
+                        description: description,
+                        mediaURL: existingInfo.mediaURL,
+                        mediaType: existingInfo.mediaType
+                    });
+                } else {
+                    return set(ref(database, 'libraryInfo/' + category), {
+                        title: title,
+                        description: description,
+                        mediaURL: null,
+                        mediaType: null
+                    });
+                }
+            })
+            .then(() => {
+                alert(`Information for ${category} saved successfully!`);
+                window.location.href = "./updatedInfo.html";
+            })
+            .catch((error) => {
+                console.error("Error saving information:", error);
+            });
+    }
 }
 
 // Fetch and display updated information
@@ -42,17 +83,24 @@ function fetchUpdatedInfo() {
 
     const infoRef = ref(database, 'libraryInfo');
 
-    // Listen for real-time updates
     onValue(infoRef, (snapshot) => {
         if (snapshot.exists()) {
             const data = snapshot.val();
-            infoList.innerHTML = ""; // Reload data
+            infoList.innerHTML = "";
+
             for (const category in data) {
                 const info = data[category];
+                const mediaHTML = info.mediaType === "image"
+                    ? `<img src="${info.mediaURL}" alt="${info.title}" style="max-width: 300px;">`
+                    : info.mediaType === "video"
+                    ? `<video src="${info.mediaURL}" controls style="max-width: 300px;"></video>`
+                    : "";
+
                 infoList.innerHTML += `
                     <div class="info-entry">
                         <h3>${info.title}</h3>
                         <p>${info.description}</p>
+                        ${mediaHTML}
                         <button class="edit-btn" onclick="editInformation('${category}')">Edit</button>
                         <button class="delete-btn" onclick="deleteInformation('${category}')">Delete</button>
                     </div>
@@ -75,7 +123,8 @@ function editInformation(category) {
                 sessionStorage.setItem("editCategory", category);
                 sessionStorage.setItem("editTitle", info.title);
                 sessionStorage.setItem("editDescription", info.description);
-
+                sessionStorage.setItem("editMediaURL", info.mediaURL);
+                sessionStorage.setItem("editMediaType", info.mediaType);
                 // Redirect to edit form
                 window.location.href = "./updatest.html";
             } else {
@@ -101,6 +150,11 @@ function deleteInformation(category) {
     }
 }
 
+// Redirect to Admin Form Page
+function goBack() {
+    window.location.href = "./updatest.html";
+}
+
 // Logout function to redirect to index.html
 function logout() {
     const confirmation = confirm("Are you sure you want to logout?");
@@ -111,14 +165,18 @@ function logout() {
         console.log("Logout canceled.");
     }
 }
+
 // Attach functions to global scope for HTML buttons
 window.saveInformation = saveInformation;
 window.editInformation = editInformation;
 window.deleteInformation = deleteInformation;
 window.fetchUpdatedInfo = fetchUpdatedInfo;
 window.logout = logout;
+window.goBack = goBack;
 
 // Automatically fetch updated info on page load (if applicable)
-if (document.getElementById("infoList")) {
-    fetchUpdatedInfo();
-}
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById("infoList")) {
+        fetchUpdatedInfo();
+    }
+});
