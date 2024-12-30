@@ -179,4 +179,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById("infoList")) {
         fetchUpdatedInfo();
     }
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> e6a3c941adb470613e2f31355bf858f899fbc63a

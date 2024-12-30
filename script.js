@@ -950,7 +950,3 @@ function closeModal() {
 
 // Attach globally
 window.closeModal = closeModal;
-
-
-
-    
