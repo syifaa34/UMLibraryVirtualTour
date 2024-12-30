@@ -13,7 +13,7 @@ const firebaseConfig = {
     authDomain: "um-virtual-tour-website.firebaseapp.com",
     databaseURL: "https://um-virtual-tour-website-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "um-virtual-tour-website",
-    storageBucket: "um-virtual-tour-website.appspot.com",
+    storageBucket: "um-virtual-tour-website.firebasestorage.app",
     messagingSenderId: "95965375882",
     appId: "1:95965375882:web:19eded73cf5f0261b4ec73",
     measurementId: "G-4CV3ZD798M"
@@ -27,7 +27,6 @@ const database = getDatabase(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
 const auth = getAuth(app);
-
 
 // Export Firebase Services
 export { app, database, db, storage, auth };
