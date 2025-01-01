@@ -369,13 +369,23 @@ main {
 /* Custom Arrow Styling */
 .custom-arrow {
     position: fixed;
-    transform: translate(-50%, -50%) scale(1);
     width: 100px;
     height: 100px;
     background: url('3d_arrow.png') no-repeat center;
     background-size: contain;
+    animation: bounce-margin 1.5s infinite ease-in-out;
 }
 
+@keyframes bounce-margin {
+    0%, 100% {
+        margin-top: 0;
+        filter: brightness(100%);
+    }
+    50% {
+        margin-top: -10px; /* Slight upward bounce */
+        filter: brightness(120%); /* Brightness increases slightly */
+    }
+}
 
     
 
@@ -391,8 +401,17 @@ main {
     position: absolute;
     z-index: 1000;
     pointer-events: auto;
+    animation: opacityPulse 1.5s infinite;
 }
 
+@keyframes opacityPulse {
+    0%, 100% {
+        opacity: 1; /* Fully visible */
+    }
+    50% {
+        opacity: 0.7; /* Slight fade */
+    }
+}
 .custom-arrow:hover {
     transform: scale(1.1);  /* Scale the arrow slightly on hover */
     transition: transform 0.3s ease;
