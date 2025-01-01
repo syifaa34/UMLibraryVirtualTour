@@ -682,13 +682,28 @@ main {
 
 
     .side-navigation {
-        width: 80%; /* Narrower for smaller screens */
+        width: 50%; /* Narrower for smaller screens */
     }
 
     .modal-content {
-        width: 90%; /* Full width modals */
+        width: 50%; /* Full width modals */
         margin: 10% auto;
         padding: 20px;
+    }
+
+    .custom-arrow {
+        width: 60px; /* Smaller size for smaller screens */
+        height: 60px;
+    }
+
+    .custom-arrowInfo {
+        width: 40px; /* Smaller size for smaller screens */
+        height: 40px;
+    }
+
+    .side-navigation .um-logo {
+        width: 170px; /* Reduce the size for smaller screens */
+        top: 10%; /* Adjust positioning if needed */
     }
 
     
