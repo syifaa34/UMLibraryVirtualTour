@@ -687,17 +687,17 @@ main {
 
     .modal-content {
         width: 50%; /* Full width modals */
-        margin: 10% auto;
+        margin: 60% auto;
         padding: 20px;
     }
 
     .custom-arrow {
-        width: 60px; /* Smaller size for smaller screens */
+        width: 40px; /* Smaller size for smaller screens */
         height: 60px;
     }
 
     .custom-arrowInfo {
-        width: 40px; /* Smaller size for smaller screens */
+        width: 30px; /* Smaller size for smaller screens */
         height: 40px;
     }
 
