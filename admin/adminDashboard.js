@@ -101,8 +101,10 @@ function fetchUpdatedInfo() {
                         <h3>${info.title}</h3>
                         <p>${info.description}</p>
                         ${mediaHTML}
+                        <div class="button-container">
                         <button class="edit-btn" onclick="editInformation('${category}')">Edit</button>
                         <button class="delete-btn" onclick="deleteInformation('${category}')">Delete</button>
+                        </div>
                     </div>
                     <hr>
                 `;

@@ -120,7 +120,22 @@ form button:hover {
     font-size: 0.9em;
     color: #666;
 }
+/* Styling for Images in Info Entries */
+.info-entry img {
+    width: 100%; /* Make the image fill the container */
+    max-width: 300px; /* Set a max width for larger screens */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 5px; /* Add slight rounding for aesthetics */
+    margin: 10px 0; /* Add spacing between image and text */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+}
 
+.info-entry .button-container {
+    display: flex;
+    justify-content: left;
+    gap: 10px; /* Add space between buttons */
+    margin-top: 10px; /* Add spacing above the buttons */
+}
 .info-entry .edit-btn,
 .info-entry .delete-btn {
     padding: 10px 15px;
@@ -174,4 +189,41 @@ form button:hover {
     background-color: darkred; /* Darker shade on hover */
 }
 
+/* Responsive Media Query for iPhone 14 Pro */
+@media only screen and (max-width: 480px) {
+    form {
+        width: 80%; /* Reduce form width */
+        margin: 70px auto; /* Adjust spacing */
+        padding: 15px; /* Reduce padding */
+    }
+
+    form h2 {
+        font-size: 1.2em; /* Smaller font size */
+    }
+
+    form button {
+        font-size: 1em; /* Adjust button font size */
+        padding: 10px; /* Adjust padding */
+    }
+
+    #updatedInfoPage {
+        width: 80%;
+        margin: 70px auto;
+        padding: 15px;
+    }
+
+    #updatedInfoPage h2 {
+        font-size: 1.3em;
+    }
+
+    .logout-container {
+        top: 10px;
+        right: 10px;
+    }
+
+    .logout-button {
+        font-size: 0.9em;
+        padding: 8px 12px;
+    }
+}
 
