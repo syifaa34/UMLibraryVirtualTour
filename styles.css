@@ -686,8 +686,8 @@ main {
     }
 
     .modal-content {
-        width: 50%; /* Full width modals */
-        margin: 60% auto;
+        width: 60%; /* Full width modals */
+        margin: 45% auto;
         padding: 20px;
     }
 
