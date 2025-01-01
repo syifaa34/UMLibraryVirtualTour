@@ -778,9 +778,18 @@ function beginTour() {
     }
 }
 
-
 // Attach to global scope
 window.beginTour = beginTour;
+
+function playWelcomeAudio() {
+    const audio = document.getElementById('welcomeAudio');
+    if (audio.paused) {
+        audio.play();
+    } else {
+        audio.pause();
+    }
+}
+window.playWelcomeAudio = playWelcomeAudio;
 
 
 // Function to initialize the viewer with multiple scenes and hotspots for each level

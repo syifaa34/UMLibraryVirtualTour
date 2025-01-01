@@ -680,3 +680,14 @@ main {
 }
 
 
+.audio-icon {
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.audio-icon:hover {
+    color: #007bff;
+}

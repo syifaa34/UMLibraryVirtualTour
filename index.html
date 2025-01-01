@@ -23,8 +23,14 @@
         </div>
     </header>
     <div class="welcome-container">
-        <h1>Welcome to UM Library Virtual Tour!</h1>
+        <h1>Welcome to UM Library Virtual Tour!
+            <span class="audio-icon" onclick="playWelcomeAudio()">
+                <i class="fas fa-volume-up"></i>
+            </span>
+        </h1>
         <button class="btn" type="button" onclick="beginTour()">BEGIN TOUR</button>
+        
+        <audio id="welcomeAudio" src="music.mp3"></audio>
 
          <!-- Features Section -->
          <section class="features">
