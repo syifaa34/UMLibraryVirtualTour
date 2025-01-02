@@ -692,7 +692,7 @@ main {
     }
 
     .custom-arrow {
-        width: 40px; /* Smaller size for smaller screens */
+        width: 50px; /* Smaller size for smaller screens */
         height: 60px;
     }
 

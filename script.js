@@ -90,9 +90,11 @@ const levels = {
         { sceneId: "scene84", pano: 'level3/L31.8.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene85", pano: 'level3/L31.9.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene86", pano: 'level3/L32.0.jpg', pitch: 20, yaw: 2, roll: 3 },
-
+    ],
+    'level4': [
+        { sceneId: "scene89", pano: 'level4/L41.0.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene90", pano: 'level3/L31.1.jpg', pitch: 20, yaw: 2, roll: 3 }
     ]
-    
 };
 
 // Updated navigation map to handle multiple hotspots per scene
