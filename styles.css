@@ -389,8 +389,13 @@ main {
     
 
 .custom-arrowInfo {
+<<<<<<< HEAD
+    width: 60px;  /* Adjust the size to match your image */
+    height: 60px;
+=======
     width: 70px;  /* Adjust the size to match your image */
     height: 70px;
+>>>>>>> 867a3ba28ddcde293ba0ac9b81210ee646c984ca
     background-image: url('info_button.png');  /* Path to your arrow image */
     background-size: contain;  /* Ensure the image fits the container */
     background-position: center;
@@ -589,6 +594,21 @@ main {
 .audio-icon:hover {
     color: #007bff;
 }
+<<<<<<< HEAD
+
+.audio-control-icon {
+    cursor: pointer;
+    font-size: 24px;
+    color: white;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+
+.audio-control-icon:hover {
+    color: #007bff;
+}
+=======
+>>>>>>> 867a3ba28ddcde293ba0ac9b81210ee646c984ca
 /* For Small Screens (iPhone 14 Pro, max-width: 480px) */
 @media only screen and (max-width: 480px) {
     body {
