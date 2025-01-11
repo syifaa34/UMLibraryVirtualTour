@@ -607,8 +607,14 @@ main {
 @media only screen and (max-width: 480px) {
     body {
         font-size: 12px; /* Smaller font for readability */
-        background-size: cover;
+        
         padding: 0;
+        background-color: #f0f0f0;
+        background-image: url('umlibrarybackground.jpg');
+        background-size: auto 100%; /* Adjust background for portrait mode */
+        background-repeat: no-repeat;
+        background-attachment: scroll; /* Change to scroll for better performance */
+        position: relative;
     }
 
     .top-bar {
