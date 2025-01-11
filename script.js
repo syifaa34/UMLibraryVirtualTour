@@ -10,21 +10,21 @@ const levels = {
         { sceneId: "scene5", pano: 'level1/1.4.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene6", pano: 'level1/1.5.jpg', pitch: 20, yaw: 150, roll: 3},
         { sceneId: "scene7", pano: 'level1/2.0.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene8", pano: 'level1/3.0.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene8", pano: 'level1/L13.0.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene9", pano: 'level1/3.1.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene10", pano: 'level1/3.2.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene11", pano: 'level1/3.3.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene13", pano: 'level1/3.5.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene14", pano: 'level1/3.6.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene11", pano: 'level1/L13.3.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene13", pano: 'level1/L13.5.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene14", pano: 'level1/L13.6.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene15", pano: 'level1/3.7.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene16", pano: 'level1/3.8.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene17", pano: 'level1/3.9.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene18", pano: 'level1/4.0.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene19", pano: 'level1/4.1.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene20", pano: 'level1/4.2.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene21", pano: 'level1/4.3.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene22", pano: 'level1/4.4.jpg', pitch: 20, yaw: 2, roll: 3 },
-        { sceneId: "scene23", pano: 'level1/4.5.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene18", pano: 'level1/L14.0.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene19", pano: 'level1/L14.1.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene20", pano: 'level1/L14.2.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene21", pano: 'level1/L14.3.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene22", pano: 'level1/L14.4.jpg', pitch: 20, yaw: 2, roll: 3 },
+        { sceneId: "scene23", pano: 'level1/L14.5.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene24", pano: 'level1/4.6.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene26", pano: 'level1/5.0.jpg', pitch: 20, yaw: 2, roll: 3 },
         { sceneId: "scene27", pano: 'level1/5.1.jpg', pitch: 20, yaw: 2, roll: 3 },
@@ -155,16 +155,16 @@ const navigationMap = {
     },
     "scene7": {
         hotspots: [
-            { pitch: -8, yaw: 5, text: "", sceneId: "scene8", cssClass: "custom-arrow", targetPitch: 25 },
+            { pitch: -8, yaw: 5, text: "", sceneId: "scene8", cssClass: "custom-arrow",targetYaw: 1, targetPitch: 25 },
             { pitch: -80, yaw: -180, text: "", sceneId: "scene1", cssClass: "custom-arrow", targetYaw: 20, targetPitch: 2 }
 
         ]
     },
     "scene8": {
         hotspots: [
-            { pitch: -8, yaw: 5, text: "", sceneId: "scene11", cssClass: "custom-arrow", targetYaw: 2, targetPitch: 20 },
+            { pitch: -8, yaw: 5, text: "", sceneId: "scene11", cssClass: "custom-arrow", targetYaw: -1, targetPitch: 20 },
             { pitch: -35, yaw: -95, text: "To Self Returning Book Kiosk", sceneId: "scene9", cssClass: "custom-arrow",targetYaw: 10, targetPitch: 8 },
-            { pitch: -5, yaw: -105, type: "", text: "Self Returning Book Kiosk", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "selfKiosk" }} ,
+            { pitch: -5, yaw: -100, type: "", text: "Self Returning Book Kiosk", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "selfKiosk" }} ,
             { pitch: -60, yaw: -184, text: "Exit", sceneId: "scene7", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
 
         ]
@@ -186,32 +186,31 @@ const navigationMap = {
     },
     "scene11": {
         hotspots: [
-            { pitch: -10, yaw: -1, text: "", sceneId: "scene13", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -20  },
+            { pitch: -13, yaw: -1, text: "", sceneId: "scene13", cssClass: "custom-arrow", targetYaw: 1, targetPitch: 20  },
             { pitch: -55, yaw: -210, text: "", sceneId: "scene8", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -20 }
 
         ]
     },
     "scene13": {
         hotspots: [
-            { pitch: -30, yaw: 100, text: "To Counter Information", sceneId: "scene14", cssClass: "custom-arrow", targetPitch: 20 },
-            { pitch: -40, yaw: -120, text: "", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: 7, targetPitch: 30 },
-            { pitch: -5, yaw: -8, text: "", sceneId: "scene11", cssClass: "custom-arrow" }
+            { pitch: -30, yaw: -70, text: "To Counter Information", sceneId: "scene14", cssClass: "custom-arrow", targetPitch: 20 },
+            { pitch: -20, yaw: 60, text: "", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: -2, targetPitch: 20 },
+            { pitch: -60, yaw: -190, text: "", sceneId: "scene11", cssClass: "custom-arrow",targetYaw: -170, targetPitch: -20 }
 
         ]
     },
     "scene14": {
         hotspots: [
-            { pitch: 20, yaw: -5, type: "info", text: "Library Counter Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "counter" }} ,
+            { pitch: 20, yaw: 3, type: "info", text: "Library Counter Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "counter" }} ,
             { pitch: -20, yaw: 100, text: "", sceneId: "scene15", cssClass: "custom-arrow",targetYaw: 5, targetPitch: 20},
-            { pitch: -50, yaw: -180, text: "", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: 70, targetPitch: -10 },
-            { pitch: -50, yaw: -120, text: "", sceneId: "scene13", cssClass: "custom-arrow" }
+            { pitch: -50, yaw: -180, text: "", sceneId: "scene13", cssClass: "custom-arrow",targetYaw: 60, targetPitch: -5 }
 
         ]
     },
     "scene15": {
         hotspots: [
             { pitch: -10, yaw: 5, text: "To Reserved Carrel", sceneId: "scene16", cssClass: "custom-arrow", targetYaw: 5, targetPitch: 25 },
-            { pitch: -10, yaw: 60, text: "", sceneId: "scene26", cssClass: "custom-arrow" },
+            { pitch: -10, yaw: 60, text: "To Digital Corner", sceneId: "scene26", cssClass: "custom-arrow" },
             { pitch: -60, yaw: -180, text: "", sceneId: "scene14", cssClass: "custom-arrow",targetYaw: -90, targetPitch: -20 },
             { pitch: 20, yaw: 45, type: "info", text: "Digital Corner", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "digitalCorner" }} ,
 
@@ -228,9 +227,9 @@ const navigationMap = {
     
     "scene18": {
         hotspots: [
-            { pitch: -30, yaw: 80, text: "", sceneId: "scene19", cssClass: "custom-arrow",targetYaw: 70, targetPitch: -10 },
-            { pitch: -40, yaw: -100, text: "", sceneId: "scene14", cssClass: "custom-arrow" },
-            { pitch: -40, yaw: -160, text: "", sceneId: "scene13", cssClass: "custom-arrow" }
+            { pitch: -20, yaw: -60, text: "To Reference Counter", sceneId: "scene19", cssClass: "custom-arrow",targetYaw: 5, targetPitch: 20 },
+            { pitch: -40, yaw: -200, text: "", sceneId: "scene13", cssClass: "custom-arrow",targetYaw: -90, targetPitch: -20 },
+            { pitch: -10, yaw: 5, text: "To Play and Rest Section", sceneId: "scene20", cssClass: "custom-arrow",targetYaw: -2, targetPitch: 20 },
 
 
         ]
@@ -238,17 +237,17 @@ const navigationMap = {
     "scene19": {
         hotspots: [
             { pitch: -3, yaw: 5, type: "info", text: "Reference Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "reference" }},
-            { pitch: -40, yaw: 80, text: "", sceneId: "scene20", cssClass: "custom-arrow" },
-            { pitch: -60, yaw: 200, text: "", sceneId: "scene22", cssClass: "custom-arrow" },
-            { pitch: -40, yaw: -80, text: "", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: -90, targetPitch: -10 }
+            { pitch: -40, yaw: 80, text: "", sceneId: "scene20", cssClass: "custom-arrow",targetYaw: -2, targetPitch: 20 },
+            { pitch: -50, yaw: 205, text: "", sceneId: "scene22", cssClass: "custom-arrow",targetYaw: 1, targetPitch: 10 },
+            { pitch: -40, yaw: -80, text: "", sceneId: "scene18", cssClass: "custom-arrow",targetYaw: -180, targetPitch: -20 }
 
         ]
     },
     "scene20": {
         hotspots: [
-            { pitch: -10, yaw: 50, text: "", sceneId: "scene21", cssClass: "custom-arrow" },
-            { pitch: -50, yaw: -180, text: "", sceneId: "scene19", cssClass: "custom-arrow",targetYaw: -90, targetPitch: -10  },
-            { pitch: 30, yaw: 8, type: "info", text: "Play and Rest Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "playandrest" }} ,
+            { pitch: -8, yaw: 30, text: "To Lift", sceneId: "scene21", cssClass: "custom-arrow" },
+            { pitch: -50, yaw: -180, text: "", sceneId: "scene19", cssClass: "custom-arrow", targetYaw: -90, targetPitch: -10  },
+            { pitch: 20, yaw: -40, type: "info", text: "Play and Rest Information", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "playandrest" }} ,
 
 
 
@@ -256,7 +255,7 @@ const navigationMap = {
     },
     "scene21": {
     hotspots: [
-        { pitch: -20, yaw: 80, text: "", sceneId: "scene20", cssClass: "custom-arrow",targetYaw: -180, targetPitch: -20  }
+        { pitch: -40, yaw: 100, text: "", sceneId: "scene20", cssClass: "custom-arrow",targetYaw: -180, targetPitch: -20 }
     ]
     },
     "scene22": {
@@ -268,15 +267,15 @@ const navigationMap = {
     },
     "scene23": {
             hotspots: [
-                { pitch: -30, yaw: 5, text: "", sceneId: "scene24", cssClass: "custom-arrow" },
-                { pitch: -40, yaw: -200, text: "", sceneId: "scene22", cssClass: "custom-arrow" }
+                { pitch: -20, yaw: 30, text: "", sceneId: "scene24", cssClass: "custom-arrow" },
+                { pitch: -30, yaw: -180, text: "", sceneId: "scene22", cssClass: "custom-arrow" }
 
             ]
         },
     "scene24": {
             hotspots: [
-                { pitch: -20, yaw: 5, text: "", sceneId: "scene24", cssClass: "custom-arrow" },
-                { pitch: -60, yaw: -180, text: "", sceneId: "scene23", cssClass: "custom-arrow" }
+                { pitch: -20, yaw: 5, text: "", sceneId: "scene7", cssClass: "custom-arrow", targetYaw: -180, targetPitch: -20 },
+                { pitch: -60, yaw: -180, text: "", sceneId: "scene23", cssClass: "custom-arrow", targetYaw: -150, targetPitch: -20 }
 
             ]
         },
@@ -299,7 +298,7 @@ const navigationMap = {
     //level 2
     "scene28": {
     hotspots: [
-        { pitch: 5, yaw: -30, text: "naik", sceneId: "scene29", cssClass: "custom-arrow" , targetYaw: -8, targetPitch: 15},
+        { pitch: 5, yaw: -30, text: "Go to Level 2", sceneId: "scene29", cssClass: "custom-arrow" , targetYaw: -8, targetPitch: 15},
         { pitch: -70, yaw: -120, text: "Return to Level 1", sceneId: "scene21", cssClass: "custom-arrow" }
     ]
    
@@ -328,15 +327,15 @@ const navigationMap = {
     "scene33": {
         hotspots: [
             { pitch: -2, yaw: -2, text: "depan", sceneId: "scene37", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20 },
-            { pitch: -10, yaw: 60, text: "kanan", sceneId: "scene47", cssClass: "custom-arrow", targetYaw: -4, targetPitch: 22 },
-            { pitch: -30, yaw: -87,  text: "kiri", sceneId: "scene34", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 15},
+            { pitch: -10, yaw: 60, text: "To Study Spaces", sceneId: "scene47", cssClass: "custom-arrow", targetYaw: -4, targetPitch: 22 },
+            { pitch: -30, yaw: -87,  text: "To Minda Hall", sceneId: "scene34", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 15},
             { pitch: -50, yaw: -200, text: "", sceneId: "scene31", cssClass: "custom-arrow", targetYaw: -177, targetPitch: -40 }
         ]
 
     },
     "scene34": {
         hotspots: [
-            { pitch: 20, yaw: -2, type: "info", text: "Minda Hall", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "mindaHall" }},
+            { pitch: 30, yaw: 40, type: "info", text: "Minda Hall", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "mindaHall" }},
             { pitch: -13, yaw: -2,  text: "", sceneId: "scene35", cssClass: "custom-arrow", targetYaw: -1, targetPitch: 23},
             { pitch: -70, yaw: -180, text: "", sceneId: "scene33", cssClass: "custom-arrow", targetYaw: -260, targetPitch: -5 }
         ]
@@ -406,7 +405,7 @@ const navigationMap = {
     },
     "scene44": {
         hotspots: [
-            { pitch: 10, yaw: 30, type: "info", text: "Computers", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "computers" }},
+            { pitch: 30, yaw: 53, type: "info", text: "Computers", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "computers" }},
             { pitch: -10, yaw: 5,  text: "", sceneId: "scene45", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene43", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
@@ -449,13 +448,14 @@ const navigationMap = {
     },
     "scene50": {
         hotspots: [
-            { pitch: -8, yaw: -10,  text: "", sceneId: "scene51", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
+            { pitch: -8, yaw: -10,  text: "To Toilet", sceneId: "scene51", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene49", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
 
     },
     "scene51": {
         hotspots: [
+            { pitch: 20, yaw: -2, type: "info", text: "Toilet", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "toilet" }},
             { pitch: -30, yaw: 50,  text: "kanan", sceneId: "scene52", cssClass: "custom-arrow", targetYaw: 4, targetPitch: 25},
             { pitch: -30, yaw: -90,  text: "kiri", sceneId: "scene53", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 25},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene50", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
@@ -466,7 +466,7 @@ const navigationMap = {
 
     "scene52": {
         hotspots: [
-            { pitch: -60, yaw: -200, text: "", sceneId: "scene51", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
+            { pitch: -60, yaw: -200, text: "", sceneId: "scene51", cssClass: "custom-arrow", targetYaw: -90, targetPitch: -10 }
         ]
 
     },
@@ -494,14 +494,14 @@ const navigationMap = {
 
     "scene57": {
         hotspots: [
-            { pitch: -10, yaw: -5,  text: "", sceneId: "scene58", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 25},
+            { pitch: -15, yaw: 8,  text: "", sceneId: "scene58", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 25},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene56", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
 
     },
     "scene58": {
         hotspots: [
-            { pitch: 20, yaw: 20, type: "info", text: "Carrel room", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "carrelRoom" }},
+            { pitch: 30, yaw: 25, type: "info", text: "Carrel room", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "carrelRoom" }},
             { pitch: -10, yaw: 5,  text: "", sceneId: "scene59", cssClass: "custom-arrow", targetYaw: -5, targetPitch: 25},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene57", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
@@ -509,21 +509,21 @@ const navigationMap = {
     },
     "scene59": {
         hotspots: [
-            { pitch: -10, yaw: 5,  text: "", sceneId: "scene60", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
+            { pitch: -10, yaw: -5,  text: "", sceneId: "scene60", cssClass: "custom-arrow", targetYaw: -40, targetPitch: 10},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene58", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
 
     },
     "scene60": {
         hotspots: [
-            { pitch: -10, yaw: 5,  text: "", sceneId: "scene61", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
+            { pitch: -20, yaw: -50,  text: "", sceneId: "scene61", cssClass: "custom-arrow", targetYaw: 80, targetPitch: 10},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene59", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
 
     },
     "scene61": {
         hotspots: [
-            { pitch: -10, yaw: 5,  text: "", sceneId: "scene62", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
+            { pitch: -20, yaw: 70,  text: "", sceneId: "scene62", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene60", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
 
@@ -531,7 +531,7 @@ const navigationMap = {
     "scene62": {
         hotspots: [
             { pitch: -10, yaw: 5,  text: "", sceneId: "scene63", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
-            { pitch: -60, yaw: -200, text: "", sceneId: "scene61", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
+            { pitch: -40, yaw: -210, text: "", sceneId: "scene61", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
 
     },
@@ -558,15 +558,15 @@ const navigationMap = {
     },
     "scene66": {
         hotspots: [
-            { pitch: -30, yaw: -90,  text: "kiri", sceneId: "scene67", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
-            { pitch: -30, yaw: 50,  text: "kanan", sceneId: "scene69", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
+            { pitch: -30, yaw: -90,  text: "To Book Shelves", sceneId: "scene67", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
+            { pitch: -18, yaw: 80,  text: "", sceneId: "scene69", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
             { pitch: -60, yaw: -200, text: "back", sceneId: "scene46", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
 
     },
     "scene67": {
         hotspots: [
-            { pitch: -10, yaw: 5,  text: "", sceneId: "scene68", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
+            { pitch: -10, yaw: 5,  text: "To ASEAN Corner", sceneId: "scene68", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene66", cssClass: "custom-arrow", targetYaw: -240, targetPitch: -10 }
         ]
 
@@ -593,10 +593,10 @@ const navigationMap = {
     },
     "scene71": {
         hotspots: [
-            { pitch: 15, yaw: 30, type: "info", text: "ASEAN corner", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "aseanCorner" }},
-            { pitch: 15, yaw: -30, type: "info", text: "24 hours library", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "24HoursLibrary" }},
-            { pitch: -20, yaw: 60,  text: "", sceneId: "scene73", cssClass: "custom-arrow", targetYaw: 1, targetPitch: 20},
-            { pitch: -60, yaw: -200, text: "", sceneId: "scene70", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
+            { pitch: 30, yaw: 30, type: "info", text: "ASEAN corner", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "aseanCorner" }},
+            { pitch: 30, yaw: -30, type: "info", text: "24 hours library", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "24HoursLibrary" }},
+            { pitch: -20, yaw: 50,  text: "", sceneId: "scene73", cssClass: "custom-arrow", targetYaw: 1, targetPitch: 20},
+            { pitch: -60, yaw: -210, text: "", sceneId: "scene70", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
 
     },
@@ -617,7 +617,7 @@ const navigationMap = {
     },
     "scene75": {
         hotspots: [
-            { pitch: -10, yaw: -50, text: "", sceneId: "scene65", cssClass: "custom-arrow", targetYaw: -90, targetPitch: -20 },
+            { pitch: -10, yaw: -50, text: "", sceneId: "scene65", cssClass: "custom-arrow", targetYaw: -120, targetPitch: -20 },
             { pitch: -60, yaw: -200, text: "", sceneId: "scene74", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
 
@@ -627,13 +627,13 @@ const navigationMap = {
     "scene76": {
         hotspots: [
             { pitch: -10, yaw: 5,  text: "", sceneId: "scene77", cssClass: "custom-arrow", targetYaw: 3, targetPitch: 22},
-            { pitch: -60, yaw: -180, text: "", sceneId: "scene1", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
+        
 
         ]
     },
     "scene77": {
         hotspots: [
-            { pitch: 10, yaw: -10, type: "info", text: "Printing", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "printing" }},
+            { pitch: 10, yaw: -50, type: "info", text: "Printing", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "printing" }},
             { pitch: -10, yaw: 5,  text: "", sceneId: "scene78", cssClass: "custom-arrow", targetYaw: 4, targetPitch: 22},
             { pitch: -60, yaw: -180, text: "", sceneId: "scene76", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
 
@@ -641,7 +641,7 @@ const navigationMap = {
     },
     "scene78": {
         hotspots: [
-            { pitch: 10, yaw: -10, type: "info", text: "Blue zone", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "blueZone" }},
+            { pitch: 20, yaw: 50, type: "info", text: "Blue zone", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "blueZone" }},
             { pitch: -10, yaw: 5,  text: "", sceneId: "scene79", cssClass: "custom-arrow", targetYaw: 4, targetPitch: 25},
             { pitch: -60, yaw: -180, text: "", sceneId: "scene77", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
 
@@ -670,14 +670,14 @@ const navigationMap = {
     },
     "scene82": {
         hotspots: [
-            { pitch: -10, yaw: 5,  text: "", sceneId: "scene83", cssClass: "custom-arrow", targetYaw: 4, targetPitch: 22},
+            { pitch: -10, yaw: 5,  text: "To CoLA", sceneId: "scene83", cssClass: "custom-arrow", targetYaw: 4, targetPitch: 22},
             { pitch: -60, yaw: -180, text: "", sceneId: "scene81", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
 
         ]
     },
     "scene83": {
         hotspots: [
-            { pitch: 10, yaw: 10, type: "info", text: "CoLA", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "colA" }},
+            { pitch: 20, yaw: 60, type: "info", text: "CoLA", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "colA" }},
             { pitch: -10, yaw: 5,  text: "", sceneId: "scene84", cssClass: "custom-arrow", targetYaw: 4, targetPitch: 22},
             { pitch: -60, yaw: -180, text: "", sceneId: "scene82", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30}
 

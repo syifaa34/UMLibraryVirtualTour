@@ -296,14 +296,14 @@ main {
     left: 0;
     top: 0;
     width: 100%;
-    height: 150%;
+    height: 800%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.6);
 }
 
 .modal-content {
     background-color: rgba(0, 51, 102, 0.9); /* Semi-transparent navy background */
-    margin: 15% auto;
+    margin: 10% auto;
     padding: 30px;
     border: none;
     width: 50%;
@@ -358,7 +358,7 @@ main {
 }
 
 #infoVideo {
-    width: 80%; /* Video takes up 80% of the modal width */
+    width: 50%; /* Video takes up 80% of the modal width */
     height: auto;
     margin: 20px auto; /* Add spacing around the video */
     border-radius: 10px;
@@ -389,13 +389,8 @@ main {
     
 
 .custom-arrowInfo {
-<<<<<<< HEAD
     width: 60px;  /* Adjust the size to match your image */
     height: 60px;
-=======
-    width: 70px;  /* Adjust the size to match your image */
-    height: 70px;
->>>>>>> 867a3ba28ddcde293ba0ac9b81210ee646c984ca
     background-image: url('info_button.png');  /* Path to your arrow image */
     background-size: contain;  /* Ensure the image fits the container */
     background-position: center;
@@ -594,7 +589,6 @@ main {
 .audio-icon:hover {
     color: #007bff;
 }
-<<<<<<< HEAD
 
 .audio-control-icon {
     cursor: pointer;
@@ -607,8 +601,8 @@ main {
 .audio-control-icon:hover {
     color: #007bff;
 }
-=======
->>>>>>> 867a3ba28ddcde293ba0ac9b81210ee646c984ca
+
+
 /* For Small Screens (iPhone 14 Pro, max-width: 480px) */
 @media only screen and (max-width: 480px) {
     body {
