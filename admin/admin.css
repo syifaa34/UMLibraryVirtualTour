@@ -191,6 +191,16 @@ form button:hover {
 
 /* Responsive Media Query for iPhone 14 Pro */
 @media only screen and (max-width: 480px) {
+
+    body {
+        font-size: 12px; /* Smaller font for readability */
+        padding: 0;
+        background-color: #f0f0f0;
+        background-image: url('umlibrarybackground.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+    }
     form {
         width: 80%; /* Reduce form width */
         margin: 70px auto; /* Adjust spacing */

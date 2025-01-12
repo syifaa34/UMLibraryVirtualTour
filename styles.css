@@ -607,14 +607,12 @@ main {
 @media only screen and (max-width: 480px) {
     body {
         font-size: 12px; /* Smaller font for readability */
-        
         padding: 0;
-        background-color: #f0f0f0;
         background-image: url('umlibrarybackground.jpg');
         background-size: auto 100%; /* Adjust background for portrait mode */
         background-repeat: no-repeat;
-        background-attachment: scroll; /* Change to scroll for better performance */
-        position: relative;
+        background-attachment: fixed; /* Change to scroll for better performance */
+
     }
 
     .top-bar {
@@ -672,12 +670,12 @@ main {
 
     .tour-heading {
         font-size: 1.5em; /* Further reduce font size for small screens */
-        top: 15%; /* Adjust positioning */
+        top: 20%; /* Adjust positioning */
     }
 
     .tour-description {
         font-size: 1.2em; /* Smaller description text */
-        top: 20%; /* Adjust positioning */
+        top: 25%; /* Adjust positioning */
         padding: 0 5px; /* Narrow padding for smaller screens */
     }
 
