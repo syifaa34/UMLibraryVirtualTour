@@ -798,7 +798,8 @@ const navigationMap = {
     },
     "scene100": {
         hotspots: [
-            { pitch: -60, yaw: -180, text: "", sceneId: "scene98", cssClass: "custom-arrow", targetYaw: -200, targetPitch: -30 }
+            { pitch: -60, yaw: -180, text: "", sceneId: "scene98", cssClass: "custom-arrow", targetYaw: -200, targetPitch: -30 },
+            { pitch: 33, yaw: 14, type: "info", text: "Musolla", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "musolla" }},
 
         ]
     },
