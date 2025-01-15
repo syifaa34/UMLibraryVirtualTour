@@ -291,7 +291,8 @@ const navigationMap = {
     },
     "scene27": {
         hotspots: [
-            { pitch: -50, yaw: -180, text: "", sceneId: "scene26", cssClass: "custom-arrow" }
+            { pitch: -20, yaw: 60,  text: "", sceneId: "scene18", cssClass: "custom-arrow", targetYaw: 90, targetPitch: -20},
+            { pitch: -50, yaw: -180, text: "", sceneId: "scene26", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
 
         ]
    
@@ -328,7 +329,7 @@ const navigationMap = {
     },
     "scene33": {
         hotspots: [
-            { pitch: -2, yaw: -2, text: "depan", sceneId: "scene37", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20 },
+            { pitch: -2, yaw: -2, text: "", sceneId: "scene37", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20 },
             { pitch: -10, yaw: 60, text: "To Study Spaces", sceneId: "scene47", cssClass: "custom-arrow", targetYaw: -4, targetPitch: 22 },
             { pitch: -30, yaw: -87,  text: "To Minda Hall", sceneId: "scene34", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 15},
             { pitch: -50, yaw: -200, text: "", sceneId: "scene31", cssClass: "custom-arrow", targetYaw: -177, targetPitch: -40 }
@@ -346,7 +347,7 @@ const navigationMap = {
     "scene35": {
         hotspots: [
             { pitch: -10, yaw: 70,  text: "", sceneId: "scene36", cssClass: "custom-arrow", targetYaw: 1, targetPitch: 25},
-            { pitch: -60, yaw: -200, text: "keluar", sceneId: "scene34", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30}
+            { pitch: -60, yaw: -200, text: "Exit Minda Hall", sceneId: "scene34", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30}
         ]
 
     },
@@ -568,7 +569,7 @@ const navigationMap = {
     },
     "scene67": {
         hotspots: [
-            { pitch: -10, yaw: 5,  text: "To ASEAN Corner", sceneId: "scene68", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
+            { pitch: -10, yaw: 5,  text: "", sceneId: "scene68", cssClass: "custom-arrow", targetYaw: -2, targetPitch: 20},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene66", cssClass: "custom-arrow", targetYaw: -240, targetPitch: -10 }
         ]
 
