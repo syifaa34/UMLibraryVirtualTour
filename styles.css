@@ -803,6 +803,12 @@ main {
         height: 40px;
     }
 
+    .buttonInfo {
+        width: 60px; /* Smaller size for smaller screens */
+        height: 70px;
+
+    }
+        
     .side-navigation .um-logo {
         width: 170px; /* Reduce the size for smaller screens */
         top: 10%; /* Adjust positioning if needed */
