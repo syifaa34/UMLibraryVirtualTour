@@ -804,8 +804,8 @@ main {
     }
 
     .buttonInfo {
-        width: 60px; /* Smaller size for smaller screens */
-        height: 70px;
+        width: 90px; /* Smaller size for smaller screens */
+        height: 100px;
 
     }
         
