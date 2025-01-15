@@ -213,6 +213,8 @@ const navigationMap = {
             { pitch: -20, yaw: 70, text: "To Digital Corner", sceneId: "scene26", cssClass: "custom-arrow",targetYaw: -1, targetPitch: 12 },
             { pitch: -60, yaw: -180, text: "", sceneId: "scene14", cssClass: "custom-arrow",targetYaw: -90, targetPitch: -20 },
             { pitch: 20, yaw: 42, type: "info", text: "Digital Corner", cssClass: "custom-arrowInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "digitalCorner" }} ,
+            { pitch: 7, yaw: -80, type: "info", text: "", cssClass: "buttonInfo", clickHandlerFunc: showDatabaseInfoModal, clickHandlerArgs: { "category": "collection" }} ,
+
 
 
         ]
@@ -942,7 +944,8 @@ function initializeEquirectangularViewer(containerId, scenes) {
             firstScene:scenes[0].sceneId, // Start with the first scene
             autoLoad: true,
             sceneFadeDuration: 0, // Smooth fade transition in milliseconds
-            loadingText: '' // Remove the "Loading..." text
+            loadingText: '', // Remove the "Loading..." text
+            
         
         },
         scenes: sceneConfigurations,
@@ -1014,6 +1017,7 @@ function showTourPage() {
     document.getElementById('level3Page').classList.add('hidden');
     document.getElementById('level4Page').classList.add('hidden');
     document.getElementById('tourPage').classList.remove('hidden');
+    
 }
 window.showTourPage = showTourPage;
 

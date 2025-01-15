@@ -422,6 +422,30 @@ main {
     transition: transform 0.3s ease;
 }
 
+.buttonInfo {
+    width: 250px;  /* Adjust the size to match your image */
+    height: 250px;
+    background-image: url('buttonInfo.png');  /* Path to your arrow image */
+    background-size: contain;  /* Ensure the image fits the container */
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 50%;  /* If you want to keep it round */
+    cursor: pointer;
+    position: absolute;
+    z-index: 1000;
+    pointer-events: auto;
+    animation: opacityPulse 1.5s infinite;
+}
+
+@keyframes opacityPulse {
+    0%, 100% {
+        opacity: 1; /* Fully visible */
+    }
+    50% {
+        opacity: 0.7; /* Slight fade */
+    }
+}
+
 
 
 
@@ -437,6 +461,7 @@ main {
     opacity: 1;     /* Keep hotspots visible */
     transition: none; /* Remove any transition effects */
 }
+
 
 .panorama-container {
     width: 100%;
@@ -607,6 +632,26 @@ main {
 .audio-control-icon:hover {
     color: #007bff;
 }
+
+.animated-text {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    opacity: 0; /* Start hidden */
+    transition: opacity 1.5s ease, transform 1.5s ease; /* Smooth animation */
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
+.animated-text.fade-in {
+    opacity: 1; /* Fade-in effect */
+    transform: translate(-50%, -45%); /* Slight upward slide effect */
+}
+
 
 
 /* For Small Screens (iPhone 14 Pro, max-width: 480px) */
