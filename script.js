@@ -589,7 +589,7 @@ const navigationMap = {
     },
     "scene70": {
         hotspots: [
-            { pitch: -10, yaw: -40,  text: "", sceneId: "scene71", cssClass: "custom-arrow", targetYaw: -1, targetPitch: 23},
+            { pitch: -10, yaw: -40,  text: "To 24 Hours Library", sceneId: "scene71", cssClass: "custom-arrow", targetYaw: -1, targetPitch: 23},
             { pitch: -60, yaw: -200, text: "", sceneId: "scene69", cssClass: "custom-arrow", targetYaw: -170, targetPitch: -30 }
         ]
 
